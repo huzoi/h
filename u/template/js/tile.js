@@ -1,21 +1,36 @@
-// Initialize Vanilla Tilt for profile card
+// Lightweight 3D Tilt Effect (No External Library Needed)
 document.addEventListener('DOMContentLoaded', function() {
   const profileCard = document.querySelector('[data-tilt]');
   
-  if (profileCard && typeof VanillaTilt !== 'undefined') {
-    VanillaTilt.init(profileCard, {
-      max: 25,              // Maximum tilt angle (25 degrees)
-      scale: 1.05,          // Scale on hover (5% larger)
-      speed: 400,           // Speed of tilt animation (ms)
-      transition: true,     // Smooth transition
-      easing: "cubic-bezier(.03,.98,.52,.99)",
-      perspective: 1200,    // Perspective depth
-      glare: false,         // No glare effect (optional)
-      'max-glare': 0.2      // If glare enabled, max intensity
-    });
-  } else if (!profileCard) {
-    console.log('Profile card element not found for tilt effect');
-  } else if (typeof VanillaTilt === 'undefined') {
-    console.log('Vanilla Tilt library not loaded');
-  }
+  if (!profileCard) return;
+
+  let isHovering = false;
+  let rotateX = 0;
+  let rotateY = 0;
+
+  profileCard.addEventListener('mouseenter', () => {
+    isHovering = true;
+  });
+
+  profileCard.addEventListener('mouseleave', () => {
+    isHovering = false;
+    profileCard.style.transform = 'perspective(1200px) rotateX(0) rotateY(0) scale(1)';
+  });
+
+  profileCard.addEventListener('mousemove', (e) => {
+    if (!isHovering) return;
+
+    const rect = profileCard.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    rotateY = (mouseX - centerX) / centerX * 15;
+    rotateX = -(mouseY - centerY) / centerY * 15;
+
+    profileCard.style.transition = 'none';
+    profileCard.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  });
 });
