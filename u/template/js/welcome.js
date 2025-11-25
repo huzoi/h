@@ -22,6 +22,20 @@ window.dismissWelcome = function(event) {
   }
 };
 
+// Add click listener to welcome screen
+document.addEventListener('DOMContentLoaded', function() {
+  const welcomeScreen = document.getElementById('welcomeScreen');
+  
+  if (welcomeScreen) {
+    welcomeScreen.addEventListener('click', function(e) {
+      // Only trigger if clicking on the screen itself, not the content
+      if (e.target === welcomeScreen) {
+        window.dismissWelcome(e);
+      }
+    });
+  }
+});
+
 // Allow pressing any key to dismiss
 document.addEventListener('keydown', function(event) {
   const welcomeScreen = document.getElementById('welcomeScreen');
