@@ -44,7 +44,7 @@
       --glow-strength: 35;
       --wallpaper: url("https://i.ibb.co/8DQMVYxg/wallpaper.gif");
     }
-    
+
     body {
       font-family: var(--user-font);
       background-image: var(--wallpaper);
@@ -75,25 +75,6 @@
     }
   </style>
 
-    <script>
-    function dismissWelcome() {
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    const mainContent = document.getElementById('mainContent');
-  
-    if (welcomeScreen) welcomeScreen.classList.add('hidden');
-    if (mainContent) mainContent.classList.remove('hidden');
-  
-    const audio = document.getElementById('audioatp');
-    if (audio) audio.play().catch(err => console.log('Audio prevented'));
-    }
-
-    document.addEventListener('keydown', function() {
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    if (welcomeScreen && !welcomeScreen.classList.contains('hidden')) {
-    dismissWelcome();
-    }
-    });
-    </script>
 </head>
 <body>
   <!-- Audio Element -->
@@ -185,11 +166,13 @@
   <script>window.DISCORD_ID = "1429098082318024735";</script>
   <script>window.BIO_ARRAY = ["demon", "artist", "creative", "unique"];</script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
   <script src="/u/template/js/ap.js" defer></script>
-  <script src="/u/template/js/bio.js"></script>
-  <script src="/u/template/js/count.js"></script>
-  <script src="/u/template/js/tile.js"></script>
-  <script src="/u/template/js/music.js"></script>
+  <script src="/u/template/js/discord.js" defer></script>
+  <script src="/u/template/js/bio.js" defer></script>
+  <script src="/u/template/js/count.js" defer></script>
+  <script src="/u/template/js/tile.js" defer></script>
+  <script src="/u/template/js/music.js" defer></script>
 
 </body>
 </html>
