@@ -1,5 +1,7 @@
-// Welcome Screen Dismissal
-function dismissWelcome() {
+// Welcome Screen Dismissal - Make it global
+window.dismissWelcome = function(event) {
+  if (event) event.preventDefault();
+  
   const welcomeScreen = document.getElementById('welcomeScreen');
   const mainContent = document.getElementById('mainContent');
   
@@ -18,12 +20,12 @@ function dismissWelcome() {
   if (mainContent) {
     mainContent.classList.remove('hidden');
   }
-}
+};
 
 // Allow pressing any key to dismiss
 document.addEventListener('keydown', function(event) {
   const welcomeScreen = document.getElementById('welcomeScreen');
   if (welcomeScreen && !welcomeScreen.classList.contains('hidden')) {
-    dismissWelcome();
+    window.dismissWelcome();
   }
 });
