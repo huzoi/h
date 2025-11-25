@@ -44,7 +44,7 @@
       --glow-strength: 35;
       --wallpaper: url("https://i.ibb.co/8DQMVYxg/wallpaper.gif");
     }
-
+    
     body {
       font-family: var(--user-font);
       background-image: var(--wallpaper);
@@ -75,6 +75,25 @@
     }
   </style>
 
+    <script>
+    function dismissWelcome() {
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const mainContent = document.getElementById('mainContent');
+  
+    if (welcomeScreen) welcomeScreen.classList.add('hidden');
+    if (mainContent) mainContent.classList.remove('hidden');
+  
+    const audio = document.getElementById('audioatp');
+    if (audio) audio.play().catch(err => console.log('Audio prevented'));
+    }
+
+    document.addEventListener('keydown', function() {
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    if (welcomeScreen && !welcomeScreen.classList.contains('hidden')) {
+    dismissWelcome();
+    }
+    });
+    </script>
 </head>
 <body>
   <!-- Audio Element -->
