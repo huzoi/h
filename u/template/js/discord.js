@@ -1,4 +1,4 @@
-// Discord Profile Fetching
+// Discord Profile Fetching - Using Lanyard API (No Auth Required)
 async function fetchDiscordProfile() {
   const discordId = window.DISCORD_ID;
   
@@ -8,14 +8,18 @@ async function fetchDiscordProfile() {
   }
 
   try {
-    const response = await fetch(`https://discord.com/api/users/${discordId}`);
+    // Using Lanyard API - free service that doesn't require authentication
+    const response = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
     
     if (!response.ok) {
-      console.log('Discord API error:', response.status);
+      console.log('Lanyard API error:', response.status);
+      // Fallback to placeholder
+      setDiscordPlaceholder();
       return;
     }
 
-    const user = await response.json();
+    const data = await response.json();
+    const user = data.data;
 
     // Update Discord Card
     const discordCard = document.getElementById('discordCard');
@@ -41,6 +45,21 @@ async function fetchDiscordProfile() {
 
   } catch (error) {
     console.log('Error fetching Discord profile:', error);
+    setDiscordPlaceholder();
+  }
+}
+
+// Fallback placeholder
+function setDiscordPlaceholder() {
+  const discordName = document.getElementById('discordName');
+  const discordAvatar = document.getElementById('discordAvatar');
+  
+  if (discordName) {
+    discordName.textContent = 'Discord User';
+  }
+  
+  if (discordAvatar) {
+    discordAvatar.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2750%22 fill=%22%235865f2%22/%3E%3Ctext x=%2250%22 y=%2760%22 font-size=%2750%22 text-anchor=%22middle%22 fill=%22white%22%3E%3C/text%3E%3C/svg%3E';
   }
 }
 
@@ -53,7 +72,6 @@ function initializeViewCounter() {
     return;
   }
 
-  // Try to use localStorage
   let viewCount = 0;
 
   try {
@@ -70,12 +88,6 @@ function initializeViewCounter() {
 }
 
 // Initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-  fetchDiscordProfile();
-  initializeViewCounter();
-});
-
-// Fallback if DOMContentLoaded already fired
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', function() {
     fetchDiscordProfile();
