@@ -5,16 +5,18 @@ function dismissWelcome() {
   
   if (welcomeScreen) {
     welcomeScreen.classList.add('hidden');
+    
+    // Wait for fade animation to complete before playing audio
+    setTimeout(() => {
+      const audio = document.getElementById('audioatp');
+      if (audio) {
+        audio.play().catch(err => console.log('Audio autoplay prevented:', err));
+      }
+    }, 800); // Matches CSS transition duration
   }
   
   if (mainContent) {
     mainContent.classList.remove('hidden');
-  }
-  
-  // Play audio if it exists
-  const audio = document.getElementById('audioatp');
-  if (audio) {
-    audio.play().catch(err => console.log('Audio autoplay prevented:', err));
   }
 }
 
