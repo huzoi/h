@@ -1,3 +1,25 @@
+// Copy to Clipboard Function for Litecoin
+window.copyToClipboard = function(text) {
+  if (!text || text === 'YOUR_LITECOIN_ADDRESS') {
+    alert('Litecoin address not configured. Please update the address in the HTML.');
+    return;
+  }
+
+  navigator.clipboard.writeText(text).then(() => {
+    // Show success feedback
+    alert('Litecoin address copied to clipboard!');
+  }).catch(err => {
+    // Fallback for older browsers
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    alert('Litecoin address copied to clipboard!');
+  });
+};
+
 // Welcome Screen Dismissal
 window.dismissWelcome = function(event) {
   if (event) event.preventDefault();
