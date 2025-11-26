@@ -9,7 +9,7 @@ async function fetchDiscordProfile() {
 
   try {
     // Using Lanyard API - free service that doesn't require authentication
-    const response = await fetch(`https://api.lanyard.rest/v1/users/${1429098082318024735}`);
+    const response = await fetch(`https://api.lanyard.rest/v1/users/${discordId}`);
     
     if (!response.ok) {
       console.log('Lanyard API error:', response.status);
