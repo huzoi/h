@@ -127,19 +127,24 @@ body {
 /* ---------- Profile Card ---------- */
 .profile-card {
   position: relative;
-  width: 90%;
-  max-width: 900px;
-  padding: 30px 50px;
+  width: 100%;
+  max-width: 600px;        /* ↓ More square */
+  min-height: 600px;       /* ↓ Ensures square shape */
+  padding: 40px 40px;      /* Balanced spacing */
+
   background: rgba(20, 20, 20, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   backdrop-filter: blur(10px);
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
+
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
+
 
 /* ---------- Profile Picture ---------- */
 .profile-picture {
@@ -478,4 +483,10 @@ body {
 /* ---------- Utility Classes ---------- */
 .hidden {
   display: none !important;
+}
+
+@media (min-width: 840px) {
+  .profile-card {
+    aspect-ratio: 1 / 1;
+  }
 }
