@@ -128,8 +128,8 @@ body {
 .profile-card {
   position: relative;
   width: 100%;
-  max-width: 600px;        /* ↓ More square */
-  min-height: 600px;       /* ↓ Ensures square shape */
+  max-width: 400px;        /* ↓ More square */
+  min-height: 400px;       /* ↓ Ensures square shape */
   padding: 40px 40px;      /* Balanced spacing */
 
   background: rgba(20, 20, 20, 0.6);
