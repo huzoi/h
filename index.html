@@ -92,20 +92,19 @@
     <i class="fas fa-volume-up"></i>
   </button>
 
-  <!-- Main Container -->
-  <div id="mainContent" class="main-container hidden">
-    <!-- Profile Card -->
-    <div class="profile-card" data-tilt>
+ <!-- Main Container -->
+<div id="mainContent" class="main-container hidden">
+  <!-- Profile Card -->
+  <div class="profile-card" data-tilt>
+    <!-- Top Row: Profile Picture + Username/Badges -->
+    <div class="profile-top" style="display: flex; gap: 15px; align-items: flex-start; width: 100%;">
       <!-- Profile Picture -->
-      <img src="https://i.ibb.co/23jjLTzG/pfp.jpg" alt="Profile" class="profile-picture">
+      <img src="https://i.ibb.co/23jjLTzG/pfp.jpg" alt="Profile" class="profile-picture" style="width: 140px; height: 140px;">
 
-      <!-- Profile Info -->
-      <div class="profile-info">
-        <!-- Nickname -->
+      <!-- Username + Badges -->
+      <div class="profile-header" style="display: flex; flex-direction: column; justify-content: flex-start; gap: 8px; flex: 1;">
+        <!-- Username -->
         <h1 class="username">#h</h1>
-
-        <!-- Typing Bio -->
-        <p class="bio-text" id="bioText"></p>
 
         <!-- Badges -->
         <div class="badges-container">
@@ -120,54 +119,58 @@
           </span>
         </div>
       </div>
+    </div>
 
-  <!-- Discord Card -->
-      <div class="discord-card-wrapper">
-        <a id="dcCard" class="discord-card" target="_blank" rel="noopener">
-          <img id="dcAvatar" src="" alt="Discord Avatar" class="discord-avatar">
-          <div class="discord-info">
-            <strong id="dcName"></strong>
-            <span id="dcBio" class="discord-status"></span>
-          </div>
-          <img id="dcActivity" src="" alt="" class="discord-activity" aria-hidden="true" style="display:none;">
+    <!-- Bottom Row: Bio -->
+    <div class="profile-bio" style="margin-top: 10px; text-align: left;">
+      <p class="bio-text" id="bioText"></p>
+    </div>
+
+    <!-- Discord Card -->
+    <div class="discord-card-wrapper" style="margin-top: 5px; width: 100%;">
+      <a id="dcCard" class="discord-card" target="_blank" rel="noopener">
+        <img id="dcAvatar" src="" alt="Discord Avatar" class="discord-avatar">
+        <div class="discord-info">
+          <strong id="dcName"></strong>
+          <span id="dcBio" class="discord-status"></span>
+        </div>
+        <img id="dcActivity" src="" alt="" class="discord-activity" aria-hidden="true" style="display:none;">
+      </a>
+    </div>
+
+    <!-- Social Links -->
+    <div class="socials-container" style="margin-top: 5px;">
+      <!-- Litecoin -->
+      <div class="social-link" data-title="Litecoin">
+        <a href="#" onclick="copyToClipboard('placeholder'); return false;" rel="noopener">
+          <i class="fa-brands fa-litecoin-sign"></i>
         </a>
       </div>
 
-  <!-- Social Links -->
-      <div class="socials-container">
-      
-        <!-- Litecoin -->
-        <div class="social-link" data-title="Litecoin">
-          <a href="#" onclick="copyToClipboard('placeholder'); return false;" rel="noopener">
-            <i class="fa-brands fa-litecoin-sign"></i>
-          </a>
-        </div>
-      
-        <!-- Telegram -->
-        <div class="social-link" data-title="Telegram">
-          <a href="https://t.me/huzoi" target="_blank" rel="noopener">
-            <i class="fa-brands fa-telegram"></i>
-          </a>
-        </div>
-      
-        <!-- Email -->
-        <div class="social-link" data-title="Email">
-          <a href="mailto:inquires@huzoi.me" target="_blank" rel="noopener">
-            <i class="fa-solid fa-envelope"></i>
-          </a>
-        </div>
-      
+      <!-- Telegram -->
+      <div class="social-link" data-title="Telegram">
+        <a href="https://t.me/huzoi" target="_blank" rel="noopener">
+          <i class="fa-brands fa-telegram"></i>
+        </a>
       </div>
 
-      <!-- View Counter (Bottom Right) -->
-      <div class="view-counter">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em">
-          <path fill="#fff" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/>
-        </svg>
-        <span id="viewCount">0</span>
+      <!-- Email -->
+      <div class="social-link" data-title="Email">
+        <a href="mailto:inquires@huzoi.me" target="_blank" rel="noopener">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
       </div>
     </div>
+
+    <!-- View Counter (Bottom Right) -->
+    <div class="view-counter">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em">
+        <path fill="#fff" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/>
+      </svg>
+      <span id="viewCount">0</span>
+    </div>
   </div>
+</div>
 
   <!-- Scripts -->
   <script>
