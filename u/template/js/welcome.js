@@ -1,4 +1,4 @@
-// Welcome Screen Dismissal - Make it global
+// Welcome Screen Dismissal
 window.dismissWelcome = function(event) {
   if (event) event.preventDefault();
   
@@ -8,13 +8,13 @@ window.dismissWelcome = function(event) {
   if (welcomeScreen) {
     welcomeScreen.classList.add('hidden');
     
-    // Wait for fade animation to complete before playing audio
+    // Wait for fade animation to complete (1.5s) before playing audio
     setTimeout(() => {
       const audio = document.getElementById('audioatp');
       if (audio) {
         audio.play().catch(err => console.log('Audio autoplay prevented:', err));
       }
-    }, 800); // Matches CSS transition duration
+    }, 1500); // Matches CSS transition duration (1.5s)
   }
   
   if (mainContent) {
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (welcomeScreen) {
     welcomeScreen.addEventListener('click', function(e) {
-      // Only trigger if clicking on the screen itself, not the content
+      // Only trigger if clicking on the screen itself
       if (e.target === welcomeScreen) {
         window.dismissWelcome(e);
       }
