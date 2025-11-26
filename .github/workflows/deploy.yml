@@ -3,37 +3,25 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger the workflow when changes are pushed to the `main` branch
-  workflow_dispatch:  # Allow manual trigger from the GitHub UI
+      - main
+  workflow_dispatch:  # Allows manual trigger
 
 permissions:
   id-token: write
-  contents: write  # Permissions to push to the repository
+  contents: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code from the repository
+      # Step 1: Checkout the code from the repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up Node.js (for static site generators that use Node.js, such as Gatsby, Next.js, etc.)
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'  # Use the version of Node.js you're using in your project
-
-      # Install dependencies and build the site
-      - name: Install dependencies and build the site
-        run: |
-          npm install  # or your build command
-          npm run build  # Make sure this is your build step (e.g., for Gatsby, Next.js, etc.)
-
-      # Deploy to GitHub Pages using the peaceiris GitHub Pages action
+      # Step 2: Deploy directly to GitHub Pages (no need for `npm install` or build)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
-          publish_dir: ./build  # Set this to the folder that contains your generated site (e.g., `public` or `build`)
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # The directory where your static files are (e.g., `./` if it's the root folder)
