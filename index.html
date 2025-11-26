@@ -95,72 +95,63 @@
  <!-- Main Container -->
 <div id="mainContent" class="main-container hidden">
   <!-- Profile Card -->
-  <div class="profile-card" data-tilt>
-    <!-- Top Row: Profile Picture + Username/Badges -->
-    <div class="profile-top" style="display: flex; gap: 15px; align-items: flex-start; width: 100%;">
-      <!-- Profile Picture -->
-      <img src="https://i.ibb.co/23jjLTzG/pfp.jpg" alt="Profile" class="profile-picture" style="width: 140px; height: 140px;">
+  <div class="profile-card">
+    <!-- Top Section: Avatar + User Info -->
+    <div class="top-section">
+      <img src="https://i.ibb.co/23jjLTzG/pfp.jpg" alt="Profile" class="profile-picture">
 
-      <!-- Username + Badges -->
-      <div class="profile-header" style="display: flex; flex-direction: column; justify-content: flex-start; gap: 8px; flex: 1;">
-        <!-- Username -->
-        <h1 class="username">#h</h1>
-
-        <!-- Badges -->
-        <div class="badges-container">
-          <span class="badge-wrap" data-title="Owner">
-            <img src="https://file.garden/aO-mpjlLlhrkp_xc/FullCrown.png" alt="Owner" class="badge">
-          </span>
-          <span class="badge-wrap" data-title="IMS">
-            <img src="https://file.garden/aO-mpjlLlhrkp_xc/FullIms.png" alt="IMS" class="badge">
-          </span>
-          <span class="badge-wrap" data-title="Verified">
-            <img src="https://file.garden/aO-mpjlLlhrkp_xc/1726-discord-verified.png" alt="Verified" class="badge">
-          </span>
+      <div class="user-info">
+        <div class="username-badges">
+          <h1 class="username">#h</h1>
+          <div class="badges-container">
+            <span class="badge-wrap" data-title="Owner">
+              <img src="https://file.garden/aO-mpjlLlhrkp_xc/FullCrown.png" alt="Owner" class="badge">
+            </span>
+            <span class="badge-wrap" data-title="IMS">
+              <img src="https://file.garden/aO-mpjlLlhrkp_xc/FullIms.png" alt="IMS" class="badge">
+            </span>
+            <span class="badge-wrap" data-title="Verified">
+              <img src="https://file.garden/aO-mpjlLlhrkp_xc/1726-discord-verified.png" alt="Verified" class="badge">
+            </span>
+          </div>
         </div>
+        <p class="bio-text" id="bioText"></p>
       </div>
     </div>
 
-    <!-- Bottom Row: Bio -->
-    <div class="profile-bio" style="margin-top: 10px; text-align: left;">
-      <p class="bio-text" id="bioText"></p>
+    <!-- Middle Section: Discord Card -->
+    <div class="middle-section">
+      <div class="discord-card-wrapper">
+        <a id="dcCard" class="discord-card" target="_blank" rel="noopener">
+          <img id="dcAvatar" src="" alt="Discord Avatar" class="discord-avatar">
+          <div class="discord-info">
+            <strong id="dcName"></strong>
+            <span id="dcBio" class="discord-status"></span>
+          </div>
+          <img id="dcActivity" src="" alt="" class="discord-activity" aria-hidden="true" style="display:none;">
+        </a>
+      </div>
     </div>
 
-    <!-- Discord Card -->
-    <div class="discord-card-wrapper" style="margin-top: 5px; width: 100%;">
-      <a id="dcCard" class="discord-card" target="_blank" rel="noopener">
-        <img id="dcAvatar" src="" alt="Discord Avatar" class="discord-avatar">
-        <div class="discord-info">
-          <strong id="dcName"></strong>
-          <span id="dcBio" class="discord-status"></span>
-        </div>
-        <img id="dcActivity" src="" alt="" class="discord-activity" aria-hidden="true" style="display:none;">
-      </a>
-    </div>
-
-    <!-- Social Links -->
-    <div class="socials-container" style="margin-top: 5px;">
-      <!-- Litecoin -->
+    <!-- Bottom Section: Social Links -->
+    <div class="bottom-section socials-container">
       <div class="social-link" data-title="Litecoin">
         <a href="#" onclick="copyToClipboard('placeholder'); return false;" rel="noopener">
           <i class="fa-brands fa-litecoin-sign"></i>
         </a>
       </div>
-
-      <!-- Telegram -->
       <div class="social-link" data-title="Telegram">
         <a href="https://t.me/huzoi" target="_blank" rel="noopener">
           <i class="fa-brands fa-telegram"></i>
         </a>
       </div>
-
-      <!-- Email -->
       <div class="social-link" data-title="Email">
         <a href="mailto:inquires@huzoi.me" target="_blank" rel="noopener">
           <i class="fa-solid fa-envelope"></i>
         </a>
       </div>
     </div>
+  </div>
 
     <!-- View Counter (Bottom Right) -->
     <div class="view-counter">
