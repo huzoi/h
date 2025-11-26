@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="https://hoodri.ch/img/HH.png">
+  
+  <title>☆</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Let my whisper torture you">
+  <meta name="keywords" content="huzoi, Let my whisper torture you">
+  <meta name="theme-color" content="#2b2d31">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="huzoi">
+  <meta property="og:description" content="Let my whisper torture you">
+  <meta property="og:image" content="https://file.garden/aO-mpjlLlhrkp_xc/Adobe%20Express%20-%20Adobe%20Express%20-%20Jaydes%20-%20lowlife%20(Official%20Music%20Video).gif">
+  <meta property="og:url" content="https://huzoi.me">
+  <meta property="og:type" content="profile">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="huzoi">
+  <meta name="twitter:description" content="Let my whisper torture you">
+  <meta name="twitter:image" content="https://file.garden/aO-mpjlLlhrkp_xc/Adobe%20Express%20-%20Adobe%20Express%20-%20Jaydes%20-%20lowlife%20(Official%20Music%20Video).gif">
+
+  <!-- Font Imports -->
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/minecraftia');
+    @import url('https://fonts.cdnfonts.com/css/inter');
+    @import url('https://fonts.cdnfonts.com/css/poppins');
+    @import url('https://fonts.cdnfonts.com/css/montserrat');
+    @import url('https://fonts.cdnfonts.com/css/roboto');
+    @import url('https://fonts.cdnfonts.com/css/supernova-2');
+    @import url('https://fonts.cdnfonts.com/css/bark-dones');
+    @import url('https://fonts.cdnfonts.com/css/monster-chiller');
+
+    :root {
+      --user-font: 'Minecraftia', sans-serif;
+      --glow-color: #ffffff;
+      --glow-strength: 35;
+      --wallpaper: url("https://i.ibb.co/8DQMVYxg/wallpaper.gif");
+    }
+
+    body {
+      font-family: var(--user-font);
+      background-image: var(--wallpaper);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .name, .username, h1, h2, h3, .fancy-font {
+      font-family: var(--user-font);
+      color: #fff;
+      text-shadow:
+        0 0 calc(var(--glow-strength) / 5 * 1px) var(--glow-color),
+        0 0 calc(var(--glow-strength) / 2.5 * 1px) var(--glow-color),
+        0 0 calc(var(--glow-strength) / 1.3 * 1px) var(--glow-color);
+      filter: drop-shadow(0 0 calc(var(--glow-strength) * 0.5px) var(--glow-color));
+      transition: text-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    @media (max-width: 768px) {
+      .name, .username, h1, h2, h3, .fancy-font {
+        text-shadow:
+          0 0 calc(var(--glow-strength) / 7 * 1px) var(--glow-color),
+          0 0 calc(var(--glow-strength) / 3.5 * 1px) var(--glow-color),
+          0 0 calc(var(--glow-strength) / 1.8 * 1px) var(--glow-color);
+        filter: drop-shadow(0 0 calc(var(--glow-strength) * 0.35px) var(--glow-color));
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <!-- Audio Element -->
+  <audio loop id="audioatp" src="https://pub-06c0463aee7f4abd86f4cc7985810193.r2.dev/u/x/music/jaydes_-_distant.mp3" preload="auto"></audio>
+
+  <!-- Welcome/Blur Screen -->
+  <div id="welcomeScreen" class="welcome-screen active">
+    <div class="welcome-content">
+      <p class="welcome-text">いらっしゃいませ</p>
+    </div>
+  </div>
+
+  <!-- Sound Toggle Button (Top Left) -->
+  <button id="soundToggle" class="sound-toggle" title="Toggle Sound">
+    <i class="fas fa-volume-up"></i>
+  </button>
+
+  <!-- Main Container -->
+  <div id="mainContent" class="main-container hidden">
+    <!-- Profile Card -->
+    <div class="profile-card" data-tilt>
+      <!-- Profile Picture -->
+      <img src="https://i.ibb.co/23jjLTzG/pfp.jpg" alt="Profile" class="profile-picture">
+
+      <!-- Profile Info -->
+      <div class="profile-info">
+        <!-- Nickname -->
+        <h1 class="username">#h</h1>
+
+        <!-- Typing Bio -->
+        <p class="bio-text" id="bioText"></p>
+
+        <!-- Badges -->
+        <div class="badges-container">
+          <span class="badge-wrap" data-title="Owner">
+            <img src="https://file.garden/aO-mpjlLlhrkp_xc/FullCrown.png" alt="Owner" class="badge">
+          </span>
+          <span class="badge-wrap" data-title="IMS">
+            <img src="https://file.garden/aO-mpjlLlhrkp_xc/FullIms.png" alt="IMS" class="badge">
+          </span>
+          <span class="badge-wrap" data-title="Verified">
+            <img src="https://file.garden/aO-mpjlLlhrkp_xc/1726-discord-verified.png" alt="Verified" class="badge">
+          </span>
+        </div>
+      </div>
+
+  <!-- Discord Card -->
+      <div class="discord-card-wrapper">
+        <a id="dcCard" class="discord-card" target="_blank" rel="noopener">
+          <img id="dcAvatar" src="" alt="Discord Avatar" class="discord-avatar">
+          <div class="discord-info">
+            <strong id="dcName"></strong>
+            <span id="dcBio" class="discord-status"></span>
+          </div>
+          <img id="dcActivity" src="" alt="" class="discord-activity" aria-hidden="true" style="display:none;">
+        </a>
+      </div>
+
+  <!-- Social Links -->
+      <div class="socials-container">
+      
+        <!-- Litecoin -->
+        <div class="social-link" data-title="Litecoin">
+          <a href="#" onclick="copyToClipboard('placeholder'); return false;" rel="noopener">
+            <i class="fa-brands fa-litecoin-sign"></i>
+          </a>
+        </div>
+      
+        <!-- Telegram -->
+        <div class="social-link" data-title="Telegram">
+          <a href="https://t.me/huzoi" target="_blank" rel="noopener">
+            <i class="fa-brands fa-telegram"></i>
+          </a>
+        </div>
+      
+        <!-- Email -->
+        <div class="social-link" data-title="Email">
+          <a href="mailto:inquires@huzoi.me" target="_blank" rel="noopener">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+      
+      </div>
+
+      <!-- View Counter (Bottom Right) -->
+      <div class="view-counter">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em">
+          <path fill="#fff" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/>
+        </svg>
+        <span id="viewCount">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    window.DISCORD_ID = "1429098082318024735";
+    window.BIO_ARRAY = ["demon", "artist", "creative", "unique"];
+  </script>
+
+  <script src="/u/template/js/ap.js" defer></script>
+  <script src="/u/template/js/bio.js" defer></script>
+  <script src="/u/template/js/tile.js" defer></script>
+  <script src="/u/template/js/music.js" defer></script>
+  <script src="/u/template/js/counter.js" defer></script>
+  
+  <!-- Welcome Screen Handler - Inline for immediate execution -->
+  <script>
+    window.dismissWelcome = function(event) {
+      if (event) event.preventDefault();
+      
+      const welcomeScreen = document.getElementById('welcomeScreen');
+      const mainContent = document.getElementById('mainContent');
+      
+      if (welcomeScreen) {
+        welcomeScreen.classList.add('hidden');
+        
+        // Wait for fade animation to complete before playing audio
+        setTimeout(() => {
+          const audio = document.getElementById('audioatp');
+          if (audio) {
+            audio.play().catch(err => console.log('Audio autoplay prevented:', err));
+          }
+        }, 800); // Matches CSS transition duration
+      }
+      
+      if (mainContent) {
+        mainContent.classList.remove('hidden');
+      }
+    };
+
+    // Add click listener to welcome screen
+    document.addEventListener('DOMContentLoaded', function() {
+      const welcomeScreen = document.getElementById('welcomeScreen');
+      
+      if (welcomeScreen) {
+        welcomeScreen.addEventListener('click', function(e) {
+          // Only trigger if clicking on the screen itself, not the content
+          if (e.target === welcomeScreen) {
+            window.dismissWelcome(e);
+          }
+        });
+      }
+    });
+
+    // Allow pressing any key to dismiss
+    document.addEventListener('keydown', function(event) {
+      const welcomeScreen = document.getElementById('welcomeScreen');
+      if (welcomeScreen && !welcomeScreen.classList.contains('hidden')) {
+        window.dismissWelcome();
+      }
+    });
+  </script>
+
+</body>
+</html>
