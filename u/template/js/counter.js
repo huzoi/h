@@ -3,7 +3,7 @@
   'use strict';
 
   // Replace with your API endpoint
-  const API_URL = 'https://huzoi-viewcounter.misc-e33.workers.dev';
+  const API_URL = 'https://worker.misc-e33.workers.dev';
 
   function initializeViewCounter() {
     const viewCountElement = document.getElementById('viewCount');
