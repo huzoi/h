@@ -1,4 +1,3 @@
-/* ap.js
 /* ---------- DOM hooks ---------- */
 const dcCard   = document.getElementById('dcCard');
 const dcAvatar = document.getElementById('dcAvatar');
@@ -100,4 +99,5 @@ if (document.readyState === 'loading') {
 
 // Refresh every 30 seconds
 setInterval(paintDiscordCard, 30000);
+
 
