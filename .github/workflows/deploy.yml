@@ -1,27 +1,38 @@
-name: Deploy to GitHub Pages
+name: Deploy Site & Worker
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Allows manual trigger
+  workflow_dispatch:  # manual trigger
 
 permissions:
   id-token: write
   contents: write
+  actions: read
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code from the repository
+      # Step 1: Checkout your repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Deploy directly to GitHub Pages (no need for `npm install` or build)
+      # Step 2: Deploy GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # The directory where your static files are (e.g., `./` if it's the root folder)
+          publish_dir: ./  # adjust if your site is in a subfolder
+
+      # Step 3: Install Wrangler
+      - name: Install Wrangler
+        run: npm install -g wrangler@latest
+
+      # Step 4: Deploy Cloudflare Worker
+      - name: Deploy Cloudflare Worker
+        run: wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
