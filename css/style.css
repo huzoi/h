@@ -130,7 +130,7 @@ body {
   width: 100%;
   max-width: 400px;        /* ↓ More square */
   min-height: 400px;       /* ↓ Ensures square shape */
-  padding: 40px 40px;      /* Balanced spacing */
+  padding: 10% 7.5%;      /* Balanced spacing */
 
   background: rgba(20, 20, 20, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
