@@ -1,6 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
+function initTile() {
   const profileCard = document.querySelector('[data-tilt]');
-  
   if (!profileCard) return;
 
   let isHovering = false;
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   profileCard.addEventListener('mouseenter', () => {
     isHovering = true;
-    if (animationId) cancelAnimationFrame(animationId);
     profileCard.style.transition = 'none';
   });
 
@@ -37,19 +35,30 @@ document.addEventListener('DOMContentLoaded', function() {
     targetRotateY = (mouseX - centerX) / centerX * 15;
     targetRotateX = -(mouseY - centerY) / centerY * 15;
 
-    if (animationId) cancelAnimationFrame(animationId);
-    
-    const updateTransform = () => {
-      rotateY += (targetRotateY - rotateY) * 0.1;
-      rotateX += (targetRotateX - rotateX) * 0.1;
+    if (!animationId) {
+      const updateTransform = () => {
+        rotateY += (targetRotateY - rotateY) * 0.1;
+        rotateX += (targetRotateX - rotateX) * 0.1;
 
-      profileCard.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-      
-      if (Math.abs(rotateY - targetRotateY) > 0.1 || Math.abs(rotateX - targetRotateX) > 0.1) {
-        animationId = requestAnimationFrame(updateTransform);
-      }
-    };
-    
-    updateTransform();
+        profileCard.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+
+        if (Math.abs(rotateY - targetRotateY) > 0.1 || Math.abs(rotateX - targetRotateX) > 0.1) {
+          animationId = requestAnimationFrame(updateTransform);
+        } else {
+          animationId = null;
+        }
+      };
+      updateTransform();
+    }
   });
+}
+
+// Call after welcome screen is dismissed
+document.addEventListener('DOMContentLoaded', () => {
+  const welcomeScreen = document.getElementById('welcomeScreen');
+  if (welcomeScreen) {
+    welcomeScreen.addEventListener('click', () => {
+      initTile();
+    });
+  }
 });
