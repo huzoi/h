@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const welcomeScreen = document.getElementById("welcomeScreen");
   const mainContent = document.getElementById("mainContent");
   const video = document.getElementById("bgVideo");
+  const audio = document.getElementById("audioatp");
 
   // Ensure video starts paused
   if (video) {
@@ -9,28 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
     video.muted = true;
   }
 
-  function dismissWelcomeScreen() {
+  function dismissWelcome() {
     welcomeScreen.classList.add("hidden");
     mainContent.classList.remove("hidden");
+
+    if (video) video.play().catch(err => console.log("Video play blocked:", err));
+    if (audio) audio.play().catch(err => console.log("Audio play blocked:", err));
   }
 
-  // Direct user gesture: click
-  welcomeScreen.addEventListener("click", () => {
-    if (video) {
-      video.muted = true;
-      video.play().catch(err => console.log("Video play blocked:", err));
-    }
-    dismissWelcomeScreen();
-  });
+  // Click handler
+  welcomeScreen.addEventListener("click", dismissWelcome);
 
-  // Optional: direct user gesture: keydown
+  // Keydown handler
   document.addEventListener("keydown", () => {
-    if (!welcomeScreen.classList.contains("hidden")) {
-      if (video) {
-        video.muted = true;
-        video.play().catch(err => console.log("Video play blocked:", err));
-      }
-      dismissWelcomeScreen();
-    }
+    if (!welcomeScreen.classList.contains("hidden")) dismissWelcome();
   });
 });
