@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mainContent.classList.remove("hidden");
   }
 
-  welcomeScreen.addEventListener("click", (e) => {
+  welcomeScreen.addEventListener("click", () => {
     if (video) {
       const playPromise = video.play();
       if (playPromise !== undefined) {
@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     dismissWelcomeScreen();
   });
-
-  document.addEventListener("keydown", (e) => {
+  
+  document.addEventListener("keydown", () => {
     if (!welcomeScreen.classList.contains("hidden")) {
       if (video) {
         const playPromise = video.play();
