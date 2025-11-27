@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="https://hoodri.ch/img/HH.png">
+  <title>☆</title>
+
+  <!-- Meta and fonts as before -->
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/minecraftia');
+    /* other font imports */
+  </style>
+</head>
+<body>
+
+  <!-- Background video -->
+  <video id="bgVideo" muted loop playsinline preload="auto" class="background-video">
+    <source src="/media/wallpaper/skyline(OfficialMusicVideo).mp4" type="video/mp4">
+  </video>
+
+  <!-- Background audio controlled by music.js -->
+  <audio loop id="audioatp" src="https://alo.ne/file/4pxqfp" preload="auto"></audio>
+
+  <!-- Welcome screen -->
+  <div id="welcomeScreen" class="welcome-screen active">
+    <div class="welcome-content">
+      <p class="welcome-text">Let my whisper torture you</p>
+    </div>
+  </div>
+
+  <!-- Sound toggle -->
+  <button id="soundToggle" class="sound-toggle" title="Toggle Sound">
+    <i class="fas fa-volume-up"></i>
+  </button>
+
+  <!-- Main content -->
+  <div id="mainContent" class="main-container hidden">
+    <div class="profile-card" data-tilt>
+      <!-- Profile card content remains unchanged -->
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="/u/template/js/music.js" defer></script>
+  <script src="/u/template/js/welcome.js" defer></script>
+
+</body>
+</html>
