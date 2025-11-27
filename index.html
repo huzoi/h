@@ -15,15 +15,15 @@
   <meta name="theme-color" content="#2b2d31">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="huzoi">
+  <meta property="og:title" content="hysteric">
   <meta property="og:description" content="Let my whisper torture you">
   <meta property="og:image" content="https://file.garden/aO-mpjlLlhrkp_xc/Adobe%20Express%20-%20Adobe%20Express%20-%20Jaydes%20-%20lowlife%20(Official%20Music%20Video).gif">
-  <meta property="og:url" content="https://huzoi.me">
+  <meta property="og:url" content="https://hoodri.ch/x">
   <meta property="og:type" content="profile">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="huzoi">
+  <meta name="twitter:title" content="hysteric">
   <meta name="twitter:description" content="Let my whisper torture you">
   <meta name="twitter:image" content="https://file.garden/aO-mpjlLlhrkp_xc/Adobe%20Express%20-%20Adobe%20Express%20-%20Jaydes%20-%20lowlife%20(Official%20Music%20Video).gif">
 
@@ -83,7 +83,7 @@
   <!-- Welcome/Blur Screen -->
   <div id="welcomeScreen" class="welcome-screen active">
     <div class="welcome-content">
-      <p class="welcome-text">Let my whisper torture you</p>
+      <p class="welcome-text">click anywhere to continue</p>
     </div>
   </div>
 
@@ -92,35 +92,36 @@
     <i class="fas fa-volume-up"></i>
   </button>
 
- <!-- Main Container -->
-<div id="mainContent" class="main-container hidden">
-  <!-- Profile Card -->
-  <div class="profile-card">
-    <!-- Top Section: Avatar + User Info -->
-    <div class="top-section">
+  <!-- Main Container -->
+  <div id="mainContent" class="main-container hidden">
+    <!-- Profile Card -->
+    <div class="profile-card" data-tilt>
+      <!-- Profile Picture -->
       <img src="https://i.ibb.co/23jjLTzG/pfp.jpg" alt="Profile" class="profile-picture">
 
-      <div class="user-info">
-        <div class="username-badges">
-          <h1 class="username">#h</h1>
-          <div class="badges-container">
-            <span class="badge-wrap" data-title="Owner">
-              <img src="https://file.garden/aO-mpjlLlhrkp_xc/FullCrown.png" alt="Owner" class="badge">
-            </span>
-            <span class="badge-wrap" data-title="IMS">
-              <img src="https://file.garden/aO-mpjlLlhrkp_xc/FullIms.png" alt="IMS" class="badge">
-            </span>
-            <span class="badge-wrap" data-title="Verified">
-              <img src="https://file.garden/aO-mpjlLlhrkp_xc/1726-discord-verified.png" alt="Verified" class="badge">
-            </span>
-          </div>
-        </div>
-        <p class="bio-text" id="bioText"></p>
-      </div>
-    </div>
+      <!-- Profile Info -->
+      <div class="profile-info">
+        <!-- Nickname -->
+        <h1 class="username">#h</h1>
 
-    <!-- Middle Section: Discord Card -->
-    <div class="middle-section">
+        <!-- Typing Bio -->
+        <p class="bio-text" id="bioText"></p>
+
+        <!-- Badges -->
+        <div class="badges-container">
+          <span class="badge-wrap" data-title="Owner">
+            <img src="https://file.garden/aO-mpjlLlhrkp_xc/FullCrown.png" alt="Owner" class="badge">
+          </span>
+          <span class="badge-wrap" data-title="IMS">
+            <img src="https://file.garden/aO-mpjlLlhrkp_xc/FullIms.png" alt="IMS" class="badge">
+          </span>
+          <span class="badge-wrap" data-title="Verified">
+            <img src="https://file.garden/aO-mpjlLlhrkp_xc/1726-discord-verified.png" alt="Verified" class="badge">
+          </span>
+        </div>
+      </div>
+
+  <!-- Discord Card -->
       <div class="discord-card-wrapper">
         <a id="dcCard" class="discord-card" target="_blank" rel="noopener">
           <img id="dcAvatar" src="" alt="Discord Avatar" class="discord-avatar">
@@ -131,42 +132,40 @@
           <img id="dcActivity" src="" alt="" class="discord-activity" aria-hidden="true" style="display:none;">
         </a>
       </div>
-    </div>
 
-    <!-- Bottom Section: Social Links -->
-    <div class="bottom-section socials-container">
-      <div class="social-link" data-title="Litecoin">
-        <a href="#" onclick="copyToClipboard('placeholder'); return false;" rel="noopener">
-          <i class="fa-brands fa-litecoin-sign"></i>
-        </a>
+      <!-- Social Links -->
+      <div class="socials-container">
+        <div class="social-link" data-title="Telegram">
+          <a href="https://t.me/huzoi" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+              <path fill="#fff" d="M24,4C12.954,4 4,12.954 4,24C4,35.046 12.954,44 24,44C35.046,44 44,35.046 44,24C44,12.954 35.046,4 24,4M32.934,34.375C32.511,35.673 30.529,36.609 28.507,36.984C27.18,37.229 25.371,37.405 23.169,36.609C21.807,36.118 20.446,35.35 19.11,34.244C18.156,33.461 17.405,32.715 16.858,31.98C16.384,31.403 16.038,30.901 15.956,30.296C15.874,29.691 16.117,29.235 16.748,28.934C17.514,28.661 18.63,28.8 19.623,29.358C20.985,30.149 22.346,31.116 23.352,31.998C24.306,32.817 25.371,33.404 26.436,33.404C27.16,33.404 27.542,33.001 27.723,32.256C27.876,31.634 28.098,30.134 28.343,28.586C28.515,27.474 28.74,25.974 28.74,25.522C28.74,24.981 28.329,24.49 27.451,24.324C26.709,24.19 25.844,24.272 25.028,24.491C24.546,24.609 24.16,24.55 24.06,24.16C24.021,24.004 24.138,23.616 24.355,23.038C24.633,22.266 25.016,21.004 25.016,20.066C25.016,19.364 24.748,18.818 24.222,18.818C23.696,18.818 23.247,19.208 22.977,19.787C22.707,20.365 22.54,21.364 22.54,22.457L22.54,23.235C22.54,23.776 22.246,24.169 21.657,24.169C21.218,24.169 20.847,23.914 20.577,23.581C20.152,23.068 19.955,21.959 19.955,20.66C19.955,18.935 20.472,17.49 21.506,16.587C22.227,16.036 23.186,15.636 24.223,15.636C26.058,15.636 27.541,16.836 27.857,18.583C28.075,19.725 27.996,21.364 27.76,23.154C27.587,24.447 27.321,25.845 27.119,26.787C26.938,27.55 27.115,27.952 27.609,28.163C28.31,28.462 29.495,28.063 30.276,27.505C32.04,26.256 33.277,24.447 33.276,22.189C33.276,19.286 31.636,16.781 29.233,15.742C27.213,14.936 24.916,14.78 22.892,15.636C20.395,16.67 18.602,19.014 18.602,21.638C18.602,23.268 19.237,24.721 20.313,25.741"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="social-link" data-title="Email">
+          <a href="mailto:inquires@huzoi.me" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+              <path fill="#fff" d="M24,4C12.954,4 4,12.954 4,24C4,35.046 12.954,44 24,44C35.046,44 44,35.046 44,24C44,12.954 35.046,4 24,4M24,11C24,11 14,18 14,24C14,29.523 18.477,34 24,34C29.523,34 34,29.523 34,24C34,18 24,11 24,11M14,16L24,23L34,16"/>
+            </svg>
+          </a>
+        </div>
       </div>
-      <div class="social-link" data-title="Telegram">
-        <a href="https://t.me/huzoi" target="_blank" rel="noopener">
-          <i class="fa-brands fa-telegram"></i>
-        </a>
-      </div>
-      <div class="social-link" data-title="Email">
-        <a href="mailto:inquires@huzoi.me" target="_blank" rel="noopener">
-          <i class="fa-solid fa-envelope"></i>
-        </a>
+
+      <!-- View Counter (Bottom Right) -->
+      <div class="view-counter">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em">
+          <path fill="#fff" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/>
+        </svg>
+        <span id="viewCount">0</span>
       </div>
     </div>
   </div>
-
-    <!-- View Counter (Bottom Right) -->
-    <div class="view-counter">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em">
-        <path fill="#fff" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/>
-      </svg>
-      <span id="viewCount">0</span>
-    </div>
-  </div>
-</div>
 
   <!-- Scripts -->
   <script>
     window.DISCORD_ID = "1429098082318024735";
-    window.BIO_ARRAY = ["demon", "@huzoi", "#1c34", "Spain | 18"];
+    window.BIO_ARRAY = ["demon", "artist", "creative", "unique"];
   </script>
 
   <script src="/u/template/js/ap.js" defer></script>
@@ -192,7 +191,7 @@
           if (audio) {
             audio.play().catch(err => console.log('Audio autoplay prevented:', err));
           }
-        }, 800); // Matches CSS transition duration
+        }, 1500); // Matches CSS transition duration (1.5s)
       }
       
       if (mainContent) {
