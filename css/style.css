@@ -1,4 +1,3 @@
-/* ---------- Reset & Base Styles ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +22,6 @@ body {
   font-family: 'Minecraftia', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-/* ---------- Welcome Screen ---------- */
 .welcome-screen {
   position: fixed;
   top: 0;
@@ -71,7 +69,6 @@ body {
   }
 }
 
-/* ---------- Sound Toggle Button ---------- */
 .sound-toggle {
   position: fixed;
   top: 20px;
@@ -101,7 +98,6 @@ body {
   transform: scale(0.95);
 }
 
-/* ---------- Main Container ---------- */
 .main-container {
   display: flex;
   justify-content: center;
@@ -116,7 +112,6 @@ body {
   display: none;
 }
 
-/* ---------- Profile Card ---------- */
 .profile-card {
   position: relative;
   width: 42.5vw;
@@ -133,7 +128,6 @@ body {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* ---------- Top Row: PFP + Username/Badges/Bio ---------- */
 .profile-top-row {
   display: flex;
   gap: 30px;
@@ -155,7 +149,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Right section: Username + Badges + Bio */
 .profile-right-section {
   display: flex;
   flex-direction: column;
@@ -164,7 +157,6 @@ body {
   min-width: 0;
 }
 
-/* Username + Badges in one row */
 .username-badges-row {
   display: flex;
   align-items: center;
@@ -181,7 +173,6 @@ body {
   white-space: nowrap;
 }
 
-/* ---------- Badges ---------- */
 .badges-container {
   display: flex;
   gap: 12px;
@@ -229,7 +220,6 @@ body {
   opacity: 1;
 }
 
-/* ---------- Bio (Below username, beside PFP) ---------- */
 .profile-bio {
   width: 100%;
 }
@@ -243,7 +233,6 @@ body {
   margin: 0;
 }
 
-/* ---------- Discord Card (Below the top row) ---------- */
 .discord-card-wrapper {
   width: 100%;
 }
@@ -305,7 +294,6 @@ body {
   flex-shrink: 0;
 }
 
-/* ---------- Socials Container (Centered) ---------- */
 .socials-container {
   display: flex;
   gap: 16px;
@@ -364,7 +352,6 @@ body {
   opacity: 1;
 }
 
-/* ---------- View Counter (Bottom Right - Don't Touch) ---------- */
 .view-counter {
   position: absolute;
   bottom: 16px;
@@ -382,7 +369,6 @@ body {
   opacity: 0.7;
 }
 
-/* ---------- Responsive Design ---------- */
 @media (max-width: 900px) {
   .profile-card {
     width: 90vw;
@@ -489,7 +475,6 @@ body {
   }
 }
 
-/* ---------- Utility Classes ---------- */
 .hidden {
   display: none !important;
 }
