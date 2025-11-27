@@ -73,9 +73,11 @@
 
 </head>
 <body>
- <video id="bgVideo" muted loop playsinline preload="auto">
-  <source src="/media/wallpaper/skyline(OfficialMusicVideo).mp4" type="video/mp4">
-</video>
+  <!-- Background Video -->
+  <video id="bgVideo" muted loop playsinline preload="auto" class="background-video">
+    <source src="/media/wallpaper/skyline(OfficialMusicVideo).mp4" type="video/mp4">
+  </video>
+
   <audio loop id="audioatp" src="https://alo.ne/file/4pxqfp" preload="auto"></audio>
 
   <div id="welcomeScreen" class="welcome-screen active">
@@ -87,6 +89,14 @@
   <button id="soundToggle" class="sound-toggle" title="Toggle Sound">
     <i class="fas fa-volume-up"></i>
   </button>
+
+  <div id="mainContent" class="main-container hidden">
+    <!-- Profile card and other content remain unchanged -->
+  </div>
+
+  <script src="/u/template/js/music.js" defer></script>
+  <script src="/u/template/js/welcome.js" defer></script>
+</body>
 
   <div id="mainContent" class="main-container hidden">
     <div class="profile-card" data-tilt>
