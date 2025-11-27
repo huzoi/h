@@ -32,22 +32,18 @@
 </head>
 <body>
 
-  <!-- Background Video -->
   <video id="bgVideo" autoplay muted loop playsinline>
     <source src="/media/wallpaper/skyline(OfficialMusicVideo).mp4" type="video/mp4">
   </video>
 
-  <!-- Welcome Screen -->
   <div id="welcomeScreen" class="welcome-screen active">
     <p class="welcome-text">Let my whisper torture you</p>
   </div>
 
-  <!-- Sound Toggle -->
   <button id="soundToggle" class="sound-toggle" title="Toggle Sound">
     <i class="fas fa-volume-mute"></i>
   </button>
 
-  <!-- Main Content -->
   <div id="mainContent" class="main-container hidden">
     <div class="profile-card" data-tilt>
       <div class="profile-top-row">
@@ -73,7 +69,6 @@
         </div>
       </div>
 
-      <!-- Discord Card -->
       <div class="discord-card-wrapper">
         <a id="dcCard" class="discord-card" target="_blank" rel="noopener">
           <img id="dcAvatar" src="" alt="Discord Avatar" class="discord-avatar">
@@ -85,7 +80,6 @@
         </a>
       </div>
 
-      <!-- Socials -->
       <div class="socials-container">
         <div class="social-link" data-title="Litecoin">
           <a href="#" onclick="copyToClipboard('LbQAcY8Gx3G3yn1MTEsvKSQiGePiY49a1F'); return false;">
@@ -104,7 +98,6 @@
         </div>
       </div>
 
-      <!-- View Counter -->
       <div class="view-counter">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#fff" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
         <span id="viewCount">0</span>
@@ -112,7 +105,6 @@
     </div>
   </div>
 
-  <!-- Audio -->
   <audio loop id="audioatp" src="https://alo.ne/file/4pxqfp" preload="auto"></audio>
 
   <script src="/u/template/js/welcome.js" defer></script>
