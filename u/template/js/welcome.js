@@ -21,20 +21,15 @@ window.dismissWelcome = function(event) {
   const audio = document.getElementById('audioatp');
   const bgVideo = document.getElementById('bgVideo');
 
-  // Hide welcome screen
   if (welcomeScreen) welcomeScreen.classList.add('hidden');
 
-  // Show main content
   if (mainContent) mainContent.classList.remove('hidden');
 
-  // Play background video and audio
   if (bgVideo) bgVideo.play().catch(err => console.log('Video autoplay prevented:', err));
   if (audio) audio.play().catch(err => console.log('Audio autoplay prevented:', err));
 
-  // Initialize tilt effect
   initTile();
 
-  // ✅ Initialize Discord card after main content is visible
   if (typeof window.initDiscordCard === 'function') {
     window.initDiscordCard();
   }

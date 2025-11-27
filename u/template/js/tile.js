@@ -53,7 +53,6 @@ function initTile() {
   });
 }
 
-// Call after welcome screen is dismissed
 document.addEventListener('DOMContentLoaded', () => {
   const welcomeScreen = document.getElementById('welcomeScreen');
   if (welcomeScreen) {
