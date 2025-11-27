@@ -18,7 +18,8 @@ window.dismissWelcome = function(event) {
   
   const welcomeScreen = document.getElementById('welcomeScreen');
   const mainContent = document.getElementById('mainContent');
-  
+  const video = document.getElementById('bgVideo');
+
   if (welcomeScreen) {
     welcomeScreen.classList.add('hidden');
   }
@@ -27,11 +28,11 @@ window.dismissWelcome = function(event) {
     mainContent.classList.remove('hidden');
   }
 
-  const audio = document.getElementById('audioatp');
-  if (audio) {
-    audio.play().catch(err => console.log('Audio autoplay prevented:', err));
+  if (video) {
+    video.play().catch(err => console.log('Video autoplay prevented:', err));
   }
 };
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const welcomeScreen = document.getElementById('welcomeScreen');
