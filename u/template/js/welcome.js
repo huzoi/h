@@ -5,29 +5,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (video) {
     video.pause();
-    video.currentTime = 0;
+    video.muted = true;
   }
 
-  function dismiss() {
+  function dismissWelcomeScreen() {
     welcomeScreen.classList.add("hidden");
     mainContent.classList.remove("hidden");
   }
 
-  welcomeScreen.addEventListener("click", () => {
+  welcomeScreen.addEventListener("click", (e) => {
     if (video) {
-      video.muted = true;
-      video.play().catch(err => console.log("Video blocked:", err));
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(err => console.log("Video play blocked:", err));
+      }
     }
-    dismiss();
+    dismissWelcomeScreen();
   });
 
-  document.addEventListener("keydown", () => {
+  document.addEventListener("keydown", (e) => {
     if (!welcomeScreen.classList.contains("hidden")) {
       if (video) {
-        video.muted = true;
-        video.play().catch(err => console.log("Video blocked:", err));
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(err => console.log("Video play blocked:", err));
+        }
       }
-      dismiss();
+      dismissWelcomeScreen();
     }
   });
 });
