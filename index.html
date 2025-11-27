@@ -9,25 +9,21 @@
   
   <title>☆</title>
 
-  <!-- SEO -->
   <meta name="description" content="Let my whisper torture you">
   <meta name="keywords" content="huzoi, Let my whisper torture you">
   <meta name="theme-color" content="#2b2d31">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="huzoi">
   <meta property="og:description" content="Let my whisper torture you">
   <meta property="og:image" content="https://file.garden/aO-mpjlLlhrkp_xc/Adobe%20Express%20-%20Adobe%20Express%20-%20Jaydes%20-%20lowlife%20(Official%20Music%20Video).gif">
   <meta property="og:url" content="https://huzoi.me">
   <meta property="og:type" content="profile">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="huzoi">
   <meta name="twitter:description" content="Let my whisper torture you">
   <meta name="twitter:image" content="https://file.garden/aO-mpjlLlhrkp_xc/Adobe%20Express%20-%20Adobe%20Express%20-%20Jaydes%20-%20lowlife%20(Official%20Music%20Video).gif">
 
-  <!-- Font Imports -->
   <style>
     @import url('https://fonts.cdnfonts.com/css/minecraftia');
     @import url('https://fonts.cdnfonts.com/css/inter');
@@ -77,34 +73,25 @@
 
 </head>
 <body>
-  <!-- Audio Element -->
   <audio loop id="audioatp" src="https://pub-06c0463aee7f4abd86f4cc7985810193.r2.dev/u/x/music/jaydes_-_distant.mp3" preload="auto"></audio>
 
-  <!-- Welcome/Blur Screen -->
   <div id="welcomeScreen" class="welcome-screen active">
     <div class="welcome-content">
       <p class="welcome-text">Let my whisper torture you</p>
     </div>
   </div>
 
-  <!-- Sound Toggle Button (Top Left) -->
   <button id="soundToggle" class="sound-toggle" title="Toggle Sound">
     <i class="fas fa-volume-up"></i>
   </button>
 
-  <!-- Main Container -->
   <div id="mainContent" class="main-container hidden">
-    <!-- Profile Card -->
     <div class="profile-card" data-tilt>
       
-      <!-- Top Row: PFP (Left) + Username (beside PFP) + Badges (beside username) + Bio (below username) -->
       <div class="profile-top-row">
-        <!-- Profile Picture -->
         <img src="https://i.ibb.co/23jjLTzG/pfp.jpg" alt="Profile" class="profile-picture">
         
-        <!-- Right Section: Username, Badges, Bio -->
         <div class="profile-right-section">
-          <!-- Username + Badges Row -->
           <div class="username-badges-row">
             <h1 class="username">#h</h1>
             <div class="badges-container">
@@ -120,14 +107,12 @@
             </div>
           </div>
           
-          <!-- Bio (Below username, beside PFP) -->
           <div class="profile-bio">
             <p class="bio-text" id="bioText"></p>
           </div>
         </div>
       </div>
 
-      <!-- Discord Card (Below the top row) -->
       <div class="discord-card-wrapper">
         <a id="dcCard" class="discord-card" target="_blank" rel="noopener">
           <img id="dcAvatar" src="" alt="Discord Avatar" class="discord-avatar">
@@ -139,7 +124,6 @@
         </a>
       </div>
 
-      <!-- Social Links (Centered below Discord) -->
       <div class="socials-container">
         <div class="social-link" data-title="Litecoin">
           <a href="#" onclick="copyToClipboard('LbQAcY8Gx3G3yn1MTEsvKSQiGePiY49a1F'); return false;" rel="noopener">
@@ -158,7 +142,6 @@
         </div>
       </div>
 
-      <!-- View Counter (Bottom Right) -->
       <div class="view-counter">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em">
           <path fill="#fff" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/>
@@ -169,7 +152,6 @@
     </div>
   </div>
 
-  <!-- Scripts -->
   <script>
     window.DISCORD_ID = "1429098082318024735";
     window.BIO_ARRAY = ["demon", "@huzoi", "#1c34", "Spain | 18"];
@@ -181,15 +163,12 @@
   <script src="/u/template/js/music.js" defer></script>
   <script src="/u/template/js/counter.js" defer></script>
   
-  <!-- Welcome Screen Handler -->
   <script>
     window.copyToClipboard = function(text) {
       if (!text || text === 'YOUR_LITECOIN_ADDRESS') {
-        alert('Litecoin address not configured.');
         return;
       }
       navigator.clipboard.writeText(text).then(() => {
-        alert('Litecoin address copied to clipboard!');
       }).catch(err => {
         const textarea = document.createElement('textarea');
         textarea.value = text;
@@ -197,7 +176,6 @@
         textarea.select();
         document.execCommand('copy');
         document.body.removeChild(textarea);
-        alert('Litecoin address copied to clipboard!');
       });
     };
 
