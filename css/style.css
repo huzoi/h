@@ -35,7 +35,7 @@ body {
   align-items: center;
   z-index: 2000;
   cursor: pointer;
-  transition: opacity 1.5s ease-out, visibility 1.5s ease-out;
+  transition: opacity 3s ease-out, visibility 3s ease-out;
 }
 
 .welcome-screen.active {
