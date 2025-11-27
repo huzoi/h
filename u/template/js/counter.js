@@ -1,8 +1,6 @@
-// Global View Counter - API Version
 (function() {
   'use strict';
 
-  // Replace with your API endpoint
   const API_URL = 'https://worker.misc-e33.workers.dev';
 
   function initializeViewCounter() {
@@ -13,10 +11,8 @@
       return;
     }
 
-    // Show loading state
     viewCountElement.textContent = '...';
 
-    // Fetch view count from API
     fetch(API_URL, {
       method: 'GET',
       headers: {
@@ -37,7 +33,6 @@
     })
     .catch(error => {
       console.log('Error fetching view count:', error);
-      // Fallback to local counter
       let localCount = 1;
       try {
         const stored = localStorage.getItem('huzoi_view_counter');
@@ -52,7 +47,6 @@
     });
   }
 
-  // Wait for DOM to be ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeViewCounter);
   } else {
