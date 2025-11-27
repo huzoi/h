@@ -25,8 +25,15 @@ window.dismissWelcome = function(event) {
 
   if (mainContent) mainContent.classList.remove('hidden');
 
-  if (bgVideo) bgVideo.play().catch(err => console.log('Video autoplay prevented:', err));
-  if (audio) audio.play().catch(err => console.log('Audio autoplay prevented:', err));
+  if (bgVideo) {
+    bgVideo.currentTime = 0;
+    bgVideo.play().catch(err => console.log('Video autoplay prevented:', err));
+  }
+
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play().catch(err => console.log('Audio autoplay prevented:', err));
+  }
 
   initTile();
 
