@@ -16,8 +16,11 @@
 
   <style>
     @import url('https://fonts.cdnfonts.com/css/minecraftia');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+    
     :root {
       --user-font: 'Minecraftia', sans-serif;
+      --japanese-font: 'Noto Sans JP', sans-serif;
       --glow-color: #ffffff;
       --glow-strength: 35;
     }
@@ -28,6 +31,10 @@
       padding: 0;
       overflow: hidden;
     }
+
+    .japanese-text {
+      font-family: var(--japanese-font);
+    }
   </style>
 </head>
 <body>
@@ -37,7 +44,7 @@
   </video>
 
   <div id="welcomeScreen" class="welcome-screen active">
-    <p class="welcome-text">Let my whisper torture you</p>
+    <p class="welcome-text japanese-text">いらっしゃいませ</p>
   </div>
 
   <button id="soundToggle" class="sound-toggle" title="Toggle Sound">
