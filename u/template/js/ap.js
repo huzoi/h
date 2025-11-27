@@ -23,41 +23,27 @@ const nitroBadge = `
 const id = window.DISCORD_ID || '';
 
 async function paintDiscordCard() {
-  if (!id) {
-    console.log('No Discord ID set');
-    return;
-  }
+  if (!id || !dcCard) return; // exit early if no Discord ID or card
 
   try {
     const res = await fetch(`https://api.lanyard.rest/v1/users/${id}`);
-    
-    if (!res.ok) {
-      console.log('Lanyard API error:', res.status);
-      return;
-    }
-    
+    if (!res.ok) return;
+
     const { data } = await res.json();
-    
-    if (!data) {
-      console.log('No data returned from Lanyard');
-      return;
-    }
+    if (!data) return;
 
     const activities = data.activities || [];
     const spotify = data.spotify;
     const first = activities[0];
 
     let bio = '';
-    
+
     if (spotify && spotify.song) {
-      const track = spotify.song;
-      const artist = spotify.artist || '';
-      bio = `<span style="color:#ffffff">Listening to</span> ${track}${artist ? '<br>' + artist : ''}`;
+      bio = `<span style="color:#ffffff">Listening to</span> ${spotify.song}${spotify.artist ? '<br>' + spotify.artist : ''}`;
     } else if (data.discord_status && first?.name === 'Custom Status') {
       bio = first.state || '';
     } else if (first?.details && first.type !== undefined) {
-      const v = verb(first.type);
-      bio = `<span style="color:#ffffff">${v}</span> ${first.details}${first.state ? '<br>' + first.state : ''}`;
+      bio = `<span style="color:#ffffff">${verb(first.type)}</span> ${first.details}${first.state ? '<br>' + first.state : ''}`;
     } else if (first?.name) {
       bio = `<span style="color:#ffffff">${verb(first.type || 0)}</span> ${first.name}`;
     }
@@ -65,16 +51,10 @@ async function paintDiscordCard() {
     const username = data.discord_user.username || 'Unknown';
     const discriminator = data.discord_user.discriminator;
     const globalName = data.discord_user.global_name || username;
-    
     const hasNitro = data.discord_user.avatar?.startsWith('a_') || false;
-    
-    const cleanName = discriminator === '0' || !discriminator
-      ? globalName
-      : `${globalName}#${discriminator}`;
-    
-    const nameHTML = hasNitro
-      ? `${cleanName}${nitroBadge}`
-      : cleanName;
+
+    const cleanName = discriminator === '0' || !discriminator ? globalName : `${globalName}#${discriminator}`;
+    const nameHTML = hasNitro ? `${cleanName}${nitroBadge}` : cleanName;
 
     const avatarId = data.discord_user.avatar;
     const avatarExt = avatarId?.startsWith('a_') ? 'gif' : 'png';
@@ -94,7 +74,6 @@ async function paintDiscordCard() {
     if (dcCard) dcCard.href = card.profileDeepLink;
 
     let actImg = '';
-    
     if (spotify && spotify.album_art_url) {
       actImg = spotify.album_art_url;
     } else if (first?.assets?.large_image) {
@@ -110,17 +89,13 @@ async function paintDiscordCard() {
       dcActivity.src = actImg;
       dcActivity.style.display = actImg ? 'block' : 'none';
     }
-
-    console.log('Discord card updated:', username);
   } catch (error) {
     console.log('Error painting Discord card:', error);
   }
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', paintDiscordCard);
-} else {
-  paintDiscordCard();
-}
-
-setInterval(paintDiscordCard, 15000);
+// Only start painting after welcome screen is dismissed
+window.initDiscordCard = function() {
+  paintDiscordCard();           // initial render
+  setInterval(paintDiscordCard, 15000); // update every 15s
+};
