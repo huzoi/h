@@ -1,349 +1,116 @@
 /* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { width:100%; height:100%; overflow:hidden; font-family:var(--user-font,'Minecraftia',sans-serif); }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* prevent scrolling */
-  font-family: var(--user-font, 'Minecraftia', sans-serif);
-}
-
-/* Background video */
+/* Background Video */
 #bgVideo {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top:0; left:0;
+  width:100%;
+  height:100%;
   object-fit: cover;
-  z-index: -1;
+  z-index:-1;
 }
 
-/* Welcome screen */
+/* Welcome Screen */
 .welcome-screen {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
+  top:0; left:0;
+  width:100%;
+  height:100%;
   background: rgba(0,0,0,0.8);
   backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-  cursor: pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:4000;
+  cursor:pointer;
   transition: opacity 1s ease, visibility 1s ease;
 }
 
-.welcome-screen.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
+.welcome-screen.hidden { opacity:0; visibility:hidden; pointer-events:none; }
 
-.welcome-text {
-  font-size: 1.5rem;
-  color: rgba(255,255,255,0.8);
-  letter-spacing: 2px;
-  animation: pulse 2s ease-in-out infinite;
-  text-align: center;
-}
+.welcome-text { font-size:1.5rem; color:rgba(255,255,255,0.8); letter-spacing:2px; text-align:center; animation:pulse 2s infinite; }
+@keyframes pulse {0%,100%{opacity:0.6}50%{opacity:1}}
 
-@keyframes pulse {
-  0%,100% { opacity: 0.6; }
-  50% { opacity: 1; }
+/* Sound Toggle */
+.sound-toggle {
+  position: fixed;
+  top: 20px; left:20px;
+  width:50px; height:50px;
+  border-radius:12px;
+  background: rgba(0,0,0,0.5);
+  border:2px solid rgba(255,255,255,0.2);
+  color:white;
+  font-size:1.5rem;
+  cursor:pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition: all 0.3s ease;
+  z-index:3000;
 }
+.sound-toggle:hover { background: rgba(0,0,0,0.7); border-color: rgba(255,255,255,0.4); transform:scale(1.1); }
+.sound-toggle:active { transform:scale(0.95); }
 
-/* Main content container */
-.main-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  width: 100%;
-  transition: opacity 0.5s ease;
-}
+/* Main Content */
+.main-container { display:flex; justify-content:center; align-items:center; min-height:100vh; width:100%; padding:20px; position:relative; z-index:1; }
+.main-container.hidden { display:none; }
 
-.main-container.hidden {
-  display: none;
-}
-
-/* Profile card */
+/* Profile Card */
 .profile-card {
   position: relative;
-  width: 42.5vw;
-  max-width: 550px;
-  min-width: 400px;
-  padding: 40px;
-  background: rgba(20, 20, 20, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  width:42.5vw; max-width:550px; min-width:400px;
+  padding:40px;
+  background: rgba(20,20,20,0.6);
   backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  color: #fff;
+  border-radius:20px;
+  display:flex; flex-direction:column; gap:20px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.3);
+  color:#fff;
 }
 
-/* Top row (profile picture + info) */
-.profile-top-row {
-  display: flex;
-  gap: 30px;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.profile-picture {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  border: 3px solid rgba(255,255,255,0.2);
-  object-fit: cover;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
-
-.profile-picture:hover {
-  transform: scale(1.05);
-}
-
-.profile-right-section {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1;
-  min-width: 0;
-}
+/* Profile top row */
+.profile-top-row { display:flex; gap:30px; align-items:flex-start; width:100%; }
+.profile-picture { width:140px; height:140px; border-radius:50%; border:3px solid rgba(255,255,255,0.2); object-fit:cover; flex-shrink:0; transition:transform 0.3s ease; }
+.profile-picture:hover { transform:scale(1.05); }
+.profile-right-section { display:flex; flex-direction:column; gap:12px; flex:1; min-width:0; }
 
 /* Username and badges */
-.username-badges-row {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
+.username-badges-row { display:flex; align-items:center; gap:15px; flex-wrap:wrap; }
+.username { font-size:2rem; font-weight:700; text-shadow:0 0 20px rgba(255,255,255,0.3); white-space:nowrap; }
+.badges-container { display:flex; gap:12px; flex-wrap:wrap; }
+.badge-wrap { position:relative; cursor:pointer; transition:transform 0.2s ease; }
+.badge-wrap:hover { transform:scale(1.15); }
+.badge { width:40px; height:40px; object-fit:contain; display:block; filter:drop-shadow(0 2px 8px rgba(255,255,255,0.1)); }
+.badge-wrap[data-title]::after { content:attr(data-title); position:absolute; bottom:100%; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.9); color:white; padding:6px 12px; border-radius:6px; font-size:0.75rem; white-space:nowrap; opacity:0; transition:opacity 0.2s ease; pointer-events:none; margin-bottom:8px; z-index:10; }
+.badge-wrap:hover::after { opacity:1; }
 
-.username {
-  font-size: 2rem;
-  font-weight: 700;
-  color: white;
-  text-shadow: 0 0 20px rgba(255,255,255,0.3);
-  white-space: nowrap;
-}
+/* Bio */
+.profile-bio .bio-text { font-size:1rem; color:rgba(255,255,255,0.7); letter-spacing:1px; font-weight:500; min-height:24px; }
 
-.badges-container {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
+/* Discord */
+.discord-card-wrapper { width:100%; }
+.discord-card { display:flex; align-items:center; gap:12px; padding:12px 16px; background:linear-gradient(135deg, rgba(88,101,242,0.15), rgba(88,101,242,0.05)); border:1px solid rgba(88,101,242,0.3); border-radius:12px; text-decoration:none; transition:all 0.3s ease; cursor:pointer; }
+.discord-card:hover { background:linear-gradient(135deg, rgba(88,101,242,0.25), rgba(88,101,242,0.1)); border-color:rgba(88,101,242,0.6); transform:translateY(-2px); }
+.discord-avatar { width:44px; height:44px; border-radius:50%; object-fit:cover; flex-shrink:0; }
+.discord-info { flex:1; min-width:0; display:flex; flex-direction:column; }
+.discord-info strong { color:white; font-size:0.95rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.discord-status { font-size:0.8rem; color:rgba(255,255,255,0.6); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.discord-activity { width:24px; height:24px; opacity:0.6; display:none; }
 
-.badge-wrap {
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.badge-wrap:hover {
-  transform: scale(1.15);
-}
-
-.badge {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  display: block;
-  filter: drop-shadow(0 2px 8px rgba(255,255,255,0.1));
-}
-
-.badge-wrap[data-title]::after {
-  content: attr(data-title);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.9);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  pointer-events: none;
-  margin-bottom: 8px;
-  z-index: 10;
-}
-
-.badge-wrap:hover::after {
-  opacity: 1;
-}
-
-/* Bio text */
-.profile-bio .bio-text {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 1px;
-  font-weight: 500;
-  min-height: 24px;
-}
-
-/* Discord card */
-.discord-card-wrapper {
-  width: 100%;
-}
-
-.discord-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  background: linear-gradient(135deg, rgba(88,101,242,0.15), rgba(88,101,242,0.05));
-  border: 1px solid rgba(88,101,242,0.3);
-  border-radius: 12px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.discord-card:hover {
-  background: linear-gradient(135deg, rgba(88,101,242,0.25), rgba(88,101,242,0.1));
-  border-color: rgba(88,101,242,0.6);
-  transform: translateY(-2px);
-}
-
-.discord-avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.discord-info {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.discord-info strong {
-  color: white;
-  font-size: 0.95rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.discord-status {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.6);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.discord-activity {
-  width: 24px;
-  height: 24px;
-  opacity: 0.6;
-  flex-shrink: 0;
-  display: none; /* hide picture-in-picture icon */
-}
-
-/* Social links */
-.socials-container {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.social-link a {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  color: white;
-  text-decoration: none;
-}
-
-.social-link a:hover {
-  background: rgba(255,255,255,0.2);
-  border-color: rgba(255,255,255,0.4);
-  transform: translateY(-4px);
-}
-
-.social-link i {
-  font-size: 24px;
-}
-
-.social-link[data-title]::after {
-  content: attr(data-title);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0,0,0,0.9);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  pointer-events: none;
-  margin-bottom: 10px;
-  z-index: 10;
-}
-
-.social-link:hover::after {
-  opacity: 1;
-}
+/* Socials */
+.socials-container { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.social-link a { display:inline-flex; justify-content:center; align-items:center; width:48px; height:48px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:50%; transition:all 0.3s ease; color:white; text-decoration:none; }
+.social-link a:hover { background:rgba(255,255,255,0.2); border-color:rgba(255,255,255,0.4); transform:translateY(-4px); }
+.social-link i { font-size:24px; }
+.social-link[data-title]::after { content:attr(data-title); position:absolute; bottom:100%; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.9); color:white; padding:6px 12px; border-radius:6px; font-size:0.75rem; white-space:nowrap; opacity:0; transition:opacity 0.2s ease; pointer-events:none; margin-bottom:10px; z-index:10; }
+.social-link:hover::after { opacity:1; }
 
 /* View counter */
-.view-counter {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.5);
-}
+.view-counter { position:absolute; bottom:16px; right:16px; display:flex; align-items:center; gap:6px; font-size:0.85rem; color:rgba(255,255,255,0.5); }
+.view-counter svg { width:1.2em; height:1.2em; opacity:0.7; }
 
-.view-counter svg {
-  width: 1.2em;
-  height: 1.2em;
-  opacity: 0.7;
-}
-
-/* Responsive adjustments */
-@media (max-width: 900px) {
-  .profile-card { width: 90vw; min-width: 600px; }
-}
-
-@media (max-width: 640px) {
-  .profile-top-row { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
-  .profile-picture { width: 120px; height: 120px; }
-  .username { font-size: 1.5rem; }
-  .badge { width: 36px; height: 36px; }
-}
-
-@media (max-width: 480px) {
-  .profile-picture { width: 100px; height: 100px; }
-  .username { font-size: 1.3rem; }
-  .bio-text { font-size: 0.85rem; }
-  .badge { width: 32px; height: 32px; }
-}
+/* Responsive */
+@media (max-width:640px){.profile-top-row{flex-direction:column;align-items:center;text-align:center;gap:20px}.profile-picture{width:120px;height:120px}.username{font-size:1.5rem}.badge{width:36px;height:36px}}
+@media (max-width:480px){.profile-picture{width:100px;height:100px}.username{font-size:1.3rem}.bio-text{font-size:0.85rem}.badge{width:32px;height:32px}}
