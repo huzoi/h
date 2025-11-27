@@ -118,6 +118,8 @@ body {
   min-height: 100vh;
   padding: 20px;
   transition: opacity 0.5s ease;
+  width: 100%;
+  max-width: 100%;
 }
 
 .main-container.hidden {
