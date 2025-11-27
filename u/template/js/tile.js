@@ -1,4 +1,3 @@
-// Lightweight 3D Tilt Effect (Smooth & Non-Glitchy)
 document.addEventListener('DOMContentLoaded', function() {
   const profileCard = document.querySelector('[data-tilt]');
   
