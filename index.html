@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="icon" href="https://hoodri.ch/img/HH.png">
-  
+
   <title>☆</title>
 
   <meta name="description" content="Let my whisper torture you">
@@ -38,15 +38,13 @@
       --user-font: 'Minecraftia', sans-serif;
       --glow-color: #ffffff;
       --glow-strength: 35;
-      /* --wallpaper: url("/media/wallpaper/skyline(OfficialMusicVideo).mp4"); */
     }
 
     body {
       font-family: var(--user-font);
-      background-image: var(--wallpaper);
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
 
     .name, .username, h1, h2, h3, .fancy-font {
@@ -69,41 +67,47 @@
         filter: drop-shadow(0 0 calc(var(--glow-strength) * 0.35px) var(--glow-color));
       }
     }
-  </style>
 
+    /* Background video styling */
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
+
   <!-- Background Video -->
-  <video id="bgVideo" muted loop playsinline preload="auto" class="background-video">
+  <video id="bgVideo" muted loop playsinline preload="auto">
     <source src="/media/wallpaper/skyline(OfficialMusicVideo).mp4" type="video/mp4">
   </video>
 
+  <!-- Background Audio -->
   <audio loop id="audioatp" src="https://alo.ne/file/4pxqfp" preload="auto"></audio>
 
+  <!-- Welcome Screen -->
   <div id="welcomeScreen" class="welcome-screen active">
     <div class="welcome-content">
       <p class="welcome-text">Let my whisper torture you</p>
     </div>
   </div>
 
+  <!-- Sound Toggle -->
   <button id="soundToggle" class="sound-toggle" title="Toggle Sound">
     <i class="fas fa-volume-up"></i>
   </button>
 
-  <div id="mainContent" class="main-container hidden">
-    <!-- Profile card and other content remain unchanged -->
-  </div>
-
-  <script src="/u/template/js/music.js" defer></script>
-  <script src="/u/template/js/welcome.js" defer></script>
-</body>
-
+  <!-- Main Content -->
   <div id="mainContent" class="main-container hidden">
     <div class="profile-card" data-tilt>
-      
       <div class="profile-top-row">
-        <img src="/media/pfp/cat.jpg" alt="Profile" class="profile-picture">
-        
+        <img src="https://i.ibb.co/23jjLTzG/pfp.jpg" alt="Profile" class="profile-picture">
         <div class="profile-right-section">
           <div class="username-badges-row">
             <h1 class="username">#h</h1>
@@ -119,13 +123,13 @@
               </span>
             </div>
           </div>
-          
           <div class="profile-bio">
             <p class="bio-text" id="bioText"></p>
           </div>
         </div>
       </div>
 
+      <!-- Discord Card -->
       <div class="discord-card-wrapper">
         <a id="dcCard" class="discord-card" target="_blank" rel="noopener">
           <img id="dcAvatar" src="" alt="Discord Avatar" class="discord-avatar">
@@ -137,6 +141,7 @@
         </a>
       </div>
 
+      <!-- Social Links -->
       <div class="socials-container">
         <div class="social-link" data-title="Litecoin">
           <a href="#" onclick="copyToClipboard('LbQAcY8Gx3G3yn1MTEsvKSQiGePiY49a1F'); return false;" rel="noopener">
@@ -155,6 +160,7 @@
         </div>
       </div>
 
+      <!-- View Counter -->
       <div class="view-counter">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em">
           <path fill="#fff" d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/>
@@ -168,21 +174,10 @@
   <script>
     window.DISCORD_ID = "1429098082318024735";
     window.BIO_ARRAY = ["demon", "@huzoi", "#1c34", "Spain | 18"];
-  </script>
 
-  <script src="/u/template/js/ap.js" defer></script>
-  <script src="/u/template/js/bio.js" defer></script>
-  <script src="/u/template/js/tile.js" defer></script>
-  <script src="/u/template/js/music.js" defer></script>
-  <script src="/u/template/js/counter.js" defer></script>
-  
- <script>
     window.copyToClipboard = function(text) {
-      if (!text || text === 'YOUR_LITECOIN_ADDRESS') {
-        return;
-      }
-      navigator.clipboard.writeText(text).then(() => {
-      }).catch(err => {
+      if (!text || text === 'YOUR_LITECOIN_ADDRESS') return;
+      navigator.clipboard.writeText(text).catch(() => {
         const textarea = document.createElement('textarea');
         textarea.value = text;
         document.body.appendChild(textarea);
@@ -191,46 +186,10 @@
         document.body.removeChild(textarea);
       });
     };
-
-    window.dismissWelcome = function(event) {
-      if (event) event.preventDefault();
-      
-      const welcomeScreen = document.getElementById('welcomeScreen');
-      const mainContent = document.getElementById('mainContent');
-      
-      if (welcomeScreen) {
-        welcomeScreen.classList.add('hidden');
-      }
-      
-      if (mainContent) {
-        mainContent.classList.remove('hidden');
-      }
-
-      const audio = document.getElementById('audioatp');
-      if (audio) {
-        audio.play().catch(err => console.log('Audio autoplay prevented:', err));
-      }
-    };
-
-    document.addEventListener('DOMContentLoaded', function() {
-      const welcomeScreen = document.getElementById('welcomeScreen');
-      
-      if (welcomeScreen) {
-        welcomeScreen.addEventListener('click', function(e) {
-          if (e.target === welcomeScreen) {
-            window.dismissWelcome(e);
-          }
-        });
-      }
-    });
-
-    document.addEventListener('keydown', function(event) {
-      const welcomeScreen = document.getElementById('welcomeScreen');
-      if (welcomeScreen && !welcomeScreen.classList.contains('hidden')) {
-        window.dismissWelcome();
-      }
-    });
   </script>
+
+  <script src="/u/template/js/music.js" defer></script>
+  <script src="/u/template/js/welcome.js" defer></script>
 
 </body>
 </html>
