@@ -163,7 +163,7 @@
   <script src="/u/template/js/music.js" defer></script>
   <script src="/u/template/js/counter.js" defer></script>
   
-  <script>
+ <script>
     window.copyToClipboard = function(text) {
       if (!text || text === 'YOUR_LITECOIN_ADDRESS') {
         return;
@@ -187,17 +187,15 @@
       
       if (welcomeScreen) {
         welcomeScreen.classList.add('hidden');
-        
-        setTimeout(() => {
-          const audio = document.getElementById('audioatp');
-          if (audio) {
-            audio.play().catch(err => console.log('Audio autoplay prevented:', err));
-          }
-        }, 1500);
       }
       
       if (mainContent) {
         mainContent.classList.remove('hidden');
+      }
+
+      const audio = document.getElementById('audioatp');
+      if (audio) {
+        audio.play().catch(err => console.log('Audio autoplay prevented:', err));
       }
     };
 
