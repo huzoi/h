@@ -127,35 +127,27 @@ body {
 /* ---------- Profile Card ---------- */
 .profile-card {
   position: relative;
-  width: 100%;
-  max-width: 600px;       /* Adjusted max-width */
-  min-height: 600px;      /* Adjusted min-height */
-  padding: 20px;          /* Overall padding */
+  width: 90%;
+  max-width: 900px;
+  padding: 30px 50px;
   background: rgba(20, 20, 20, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
-  gap: 10px;              /* Gap between sections */
+  align-items: center;
+  gap: 15px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* ---------- Top Row: Avatar + Username/Badges ---------- */
-.profile-top {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  width: 100%;
-}
-
+/* ---------- Profile Picture ---------- */
 .profile-picture {
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   border: 3px solid rgba(255, 255, 255, 0.2);
   object-fit: cover;
-  flex-shrink: 0;
   transition: transform 0.3s ease;
 }
 
@@ -163,19 +155,35 @@ body {
   transform: scale(1.05);
 }
 
-/* Username + badges column */
-.profile-header {
+/* ---------- Profile Info ---------- */
+.profile-info {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 8px;
-  flex: 1;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.username {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.bio-text {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  min-height: 24px;
+  letter-spacing: 1px;
+  font-weight: 500;
 }
 
 /* ---------- Badges ---------- */
 .badges-container {
   display: flex;
   gap: 12px;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -197,24 +205,33 @@ body {
   filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.1));
 }
 
-/* ---------- Bio ---------- */
-.profile-bio {
-  margin-top: 5px;
-  text-align: left;
+.badge-wrap[data-title]::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  margin-bottom: 8px;
+  z-index: 10;
 }
 
-.bio-text {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 1px;
-  font-weight: 500;
-  min-height: 24px;
+.badge-wrap:hover::after {
+  opacity: 1;
 }
 
 /* ---------- Discord Card ---------- */
 .discord-card-wrapper {
   width: 100%;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .discord-card {
@@ -267,48 +284,26 @@ body {
   text-overflow: ellipsis;
 }
 
-/* ---------- Social Links ---------- */
+.discord-activity {
+  width: 24px;
+  height: 24px;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.discord-card:hover .discord-info strong::before {
+  content: "Discord • ";
+  color: rgba(88, 101, 242, 0.8);
+}
+
+/* ---------- Socials Container ---------- */
 .socials-container {
   display: flex;
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 5px;
+  margin-top: 10px;
 }
-
-.social-link a {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  color: white;
-  text-decoration: none;
-}
-
-.social-link a:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-4px);
-}
-
-.social-link i {
-  font-size: 24px;
-}
-
-
-/* ---------- Social Links Section ---------- */
-.socials-container {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 8px;
-}
-
 
 .social-link {
   position: relative;
@@ -334,8 +329,9 @@ body {
   transform: translateY(-4px);
 }
 
-.social-link i {
-  font-size: 24px
+.social-link svg {
+  width: 24px;
+  height: 24px;
 }
 
 .social-link[data-title]::after {
@@ -346,21 +342,20 @@ body {
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.9);
   color: white;
-  padding: 4px 10px;         /* Slightly smaller padding for better spacing */
+  padding: 6px 12px;
   border-radius: 6px;
   font-size: 0.75rem;
   white-space: nowrap;
   opacity: 0;
   transition: opacity 0.2s ease;
   pointer-events: none;
-  margin-bottom: 5px;        /* Reduced from 10px for better alignment */
+  margin-bottom: 10px;
   z-index: 10;
 }
 
 .social-link:hover::after {
   opacity: 1;
 }
-
 
 /* ---------- View Counter ---------- */
 .view-counter {
@@ -484,82 +479,4 @@ body {
 /* ---------- Utility Classes ---------- */
 .hidden {
   display: none !important;
-}
-
-@media (min-width: 840px) {
-  .profile-card {
-    aspect-ratio: 1 / 1;
-  }
-}
-
-
-/* ---------- Responsive Adjustments ---------- */
-@media (max-width: 640px) {
-  .profile-card {
-    padding: 20px;
-    gap: 10px;
-  }
-
-  .profile-picture {
-    width: 120px;
-    height: 120px;
-  }
-
-  .username {
-    font-size: 1.5rem;
-  }
-
-  .badge {
-    width: 36px;
-    height: 36px;
-  }
-
-  .discord-card {
-    padding: 10px 12px;
-  }
-
-  .discord-avatar {
-    width: 40px;
-    height: 40px;
-  }
-
-  .social-link a {
-    width: 44px;
-    height: 44px;
-  }
-}
-
-@media (max-width: 480px) {
-  .profile-card {
-    padding: 16px;
-    gap: 8px;
-  }
-
-  .profile-picture {
-    width: 100px;
-    height: 100px;
-  }
-
-  .username {
-    font-size: 1.3rem;
-  }
-
-  .badge {
-    width: 32px;
-    height: 32px;
-  }
-
-  .discord-card {
-    padding: 8px 10px;
-  }
-
-  .discord-avatar {
-    width: 36px;
-    height: 36px;
-  }
-
-  .social-link a {
-    width: 40px;
-    height: 40px;
-  }
 }
