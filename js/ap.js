@@ -70,6 +70,8 @@ async function updateDiscordCard() {
     const displayName = discriminator === '0' || !discriminator 
       ? globalName 
       : `${globalName}#${discriminator}`;
+    
+    const usernameHTML = hasNitro ? `${displayName}${nitroBadge}` : displayName;
 
     let bioHTML = '';
     
