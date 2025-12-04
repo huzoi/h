@@ -1,226 +1,65 @@
+var cursoreffects = function(t) {
+  "use strict";
+  return t.followingDotWithSparkles = function(t) {
+    let e, n, i, o = t && t.element, s = o || document.body, h = window.innerWidth, c = window.innerHeight, l = {x: h / 2, y: h / 2}, a = {x: h / 2, y: h / 2}, r = [];
+    const d = t?.dotColor || "#ffffff", u = t?.sparkleColor || "#ffffff", A = t?.dotSize || 6, m = t?.dotLag || 10, g = t?.sparkleInterval || 50, f = t?.sparkleLifeSpan || 60;
+    let p = 0;
+    const y = window.matchMedia("(prefers-reduced-motion: reduce)");
+    
+    function v() {
+      if (y.matches) return console.log("This browser has prefers reduced motion turned on, so the cursor did not init"), !1;
+      e = document.createElement("canvas"), n = e.getContext("2d"), e.style.top = "0px", e.style.left = "0px", e.style.pointerEvents = "none", o ? (e.style.position = "absolute", s.appendChild(e), e.width = s.clientWidth, e.height = s.clientHeight) : (e.style.position = "fixed", document.body.appendChild(e), e.width = h, e.height = c), document.body.style.cursor = "none", s.addEventListener("mousemove", E), window.addEventListener("resize", w), x();
+    }
+    
+    function w(t) {
+      h = window.innerWidth, c = window.innerHeight, o ? (e.width = s.clientWidth, e.height = s.clientHeight) : (e.width = h, e.height = c);
+    }
+    
+    function E(t) {
+      if (o) {
+        const e = s.getBoundingClientRect();
+        l.x = t.clientX - e.left, l.y = t.clientY - e.top;
+      } else l.x = t.clientX, l.y = t.clientY;
+    }
+    
+    function M(t, e) {
+      r.push(new b(t, e));
+    }
+    
+    function x(t) {
+      !function() {
+        a.x += (l.x - a.x) / m, a.y += (l.y - a.y) / m;
+      }(), function(t) {
+        if (0 == r.length && Math.abs(a.x - l.x) < 0.1 && Math.abs(a.y - l.y) < 0.1) return void n.clearRect(0, 0, h, c);
+        n.clearRect(0, 0, h, c), t - p > g && (M(a.x, a.y), p = t);
+        for (let t = 0; t < r.length; t++) r[t].update(n);
+        for (let t = r.length - 1; t >= 0; t--) r[t].lifeSpan < 0 && r.splice(t, 1);
+        n.save(), n.fillStyle = d, n.shadowBlur = 15, n.shadowColor = d, n.beginPath(), n.arc(a.x, a.y, A, 0, 2 * Math.PI), n.fill(), n.closePath(), n.restore();
+      }(t), i = requestAnimationFrame(x);
+    }
+    
+    function C() {
+      e.remove(), cancelAnimationFrame(i), document.body.style.cursor = "", s.removeEventListener("mousemove", E), window.removeEventListener("resize", w);
+    }
+    
+    function b(t, e) {
+      this.initialLifeSpan = f, this.lifeSpan = f, this.velocity = {x: (Math.random() < 0.5 ? -1 : 1) * Math.random() * 2, y: 2 * Math.random() + 1}, this.position = {x: t, y: e}, this.size = 3 * Math.random() + 1, this.update = function(t) {
+        this.position.x += this.velocity.x, this.position.y += this.velocity.y, this.lifeSpan--, this.velocity.y += 0.1, this.velocity.x += (Math.random() < 0.5 ? -1 : 1) * 0.05;
+        const e = Math.max(this.lifeSpan / this.initialLifeSpan, 0);
+        t.save(), t.globalAlpha = e, t.fillStyle = u, t.shadowBlur = 10, t.shadowColor = u, t.beginPath(), t.arc(this.position.x, this.position.y, this.size, 0, 2 * Math.PI), t.fill(), t.closePath(), t.restore();
+      };
+    }
+    return y.onchange = () => {y.matches ? C() : v()}, v(), {destroy: C};
+  }, t;
+}({});
+
 (function() {
-  'use strict';
-
-  function followingDotWithSparkles(options) {
-    let canvas, ctx, animationId;
-    let element = options && options.element;
-    let container = element || document.body;
-    let windowWidth = window.innerWidth;
-    let windowHeight = window.innerHeight;
-    
-    const cursor = { x: windowWidth / 2, y: windowHeight / 2 };
-    const dotPos = { x: windowWidth / 2, y: windowHeight / 2 };
-    const particles = [];
-    
-    const dotColor = options?.dotColor || '#ffffff';
-    const sparkleColor = options?.sparkleColor || '#ffffff';
-    const dotSize = options?.dotSize || 6;
-    const dotLag = options?.dotLag || 10;
-    const sparkleInterval = options?.sparkleInterval || 50;
-    const sparkleLifeSpan = options?.sparkleLifeSpan || 60;
-    
-    let lastSparkleTime = 0;
-    
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    function init() {
-      if (prefersReducedMotion.matches) {
-        return false;
-      }
-
-      canvas = document.createElement('canvas');
-      ctx = canvas.getContext('2d');
-      canvas.style.top = '0px';
-      canvas.style.left = '0px';
-      canvas.style.pointerEvents = 'none';
-
-      if (element) {
-        canvas.style.position = 'absolute';
-        container.appendChild(canvas);
-        canvas.width = container.clientWidth;
-        canvas.height = container.clientHeight;
-      } else {
-        canvas.style.position = 'fixed';
-        document.body.appendChild(canvas);
-        canvas.width = windowWidth;
-        canvas.height = windowHeight;
-      }
-
-      container.addEventListener('mousemove', onMouseMove);
-      window.addEventListener('resize', onResize);
-      
-      loop();
-    }
-
-    function onResize(e) {
-      windowWidth = window.innerWidth;
-      windowHeight = window.innerHeight;
-      
-      if (element) {
-        canvas.width = container.clientWidth;
-        canvas.height = container.clientHeight;
-      } else {
-        canvas.width = windowWidth;
-        canvas.height = windowHeight;
-      }
-    }
-
-    function onMouseMove(e) {
-      if (element) {
-        const rect = container.getBoundingClientRect();
-        cursor.x = e.clientX - rect.left;
-        cursor.y = e.clientY - rect.top;
-      } else {
-        cursor.x = e.clientX;
-        cursor.y = e.clientY;
-      }
-    }
-
-    function createSparkle(x, y) {
-      particles.push(new Particle(x, y));
-    }
-
-    function loop(timestamp) {
-      updateDot();
-      render(timestamp);
-      animationId = requestAnimationFrame(loop);
-    }
-
-    function updateDot() {
-      dotPos.x += (cursor.x - dotPos.x) / dotLag;
-      dotPos.y += (cursor.y - dotPos.y) / dotLag;
-    }
-
-    function render(timestamp) {
-      if (particles.length === 0 && 
-          Math.abs(dotPos.x - cursor.x) < 0.1 && 
-          Math.abs(dotPos.y - cursor.y) < 0.1) {
-        ctx.clearRect(0, 0, windowWidth, windowHeight);
-        return;
-      }
-
-      ctx.clearRect(0, 0, windowWidth, windowHeight);
-
-      if (timestamp - lastSparkleTime > sparkleInterval) {
-        createSparkle(dotPos.x, dotPos.y);
-        lastSparkleTime = timestamp;
-      }
-
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update(ctx);
-      }
-
-      for (let i = particles.length - 1; i >= 0; i--) {
-        if (particles[i].lifeSpan < 0) {
-          particles.splice(i, 1);
-        }
-      }
-
-      ctx.save();
-      ctx.fillStyle = dotColor;
-      ctx.shadowBlur = 15;
-      ctx.shadowColor = dotColor;
-      ctx.beginPath();
-      ctx.arc(dotPos.x, dotPos.y, dotSize, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.closePath();
-      ctx.restore();
-    }
-
-    function destroy() {
-      canvas.remove();
-      cancelAnimationFrame(animationId);
-      container.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('resize', onResize);
-    }
-
-    function Particle(x, y) {
-      this.initialLifeSpan = sparkleLifeSpan;
-      this.lifeSpan = sparkleLifeSpan;
-      this.velocity = {
-        x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() * 2),
-        y: Math.random() * 2 + 1
-      };
-      this.position = { x: x, y: y };
-      this.size = Math.random() * 3 + 1;
-
-      this.update = function(ctx) {
-        this.position.x += this.velocity.x;
-        this.position.y += this.velocity.y;
-        this.lifeSpan--;
-        
-        this.velocity.y += 0.1;
-        this.velocity.x += (Math.random() < 0.5 ? -1 : 1) * 0.05;
-
-        const opacity = Math.max(this.lifeSpan / this.initialLifeSpan, 0);
-
-        ctx.save();
-        ctx.globalAlpha = opacity;
-        ctx.fillStyle = sparkleColor;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = sparkleColor;
-        ctx.beginPath();
-        ctx.arc(
-          this.position.x,
-          this.position.y,
-          this.size,
-          0,
-          Math.PI * 2
-        );
-        ctx.fill();
-        ctx.closePath();
-        ctx.restore();
-      };
-    }
-
-    prefersReducedMotion.onchange = () => {
-      if (prefersReducedMotion.matches) {
-        destroy();
-      } else {
-        init();
-      }
-    };
-
-    init();
-
-    return { destroy: destroy };
+  function t() {
+    const t = document.getElementById("welcomeScreen"), e = document.getElementById("mainContent");
+    t && !t.classList.contains("hidden") || e && !e.classList.contains("hidden") && (window.cursorEffect = cursoreffects.followingDotWithSparkles({dotColor: "#ffffff", sparkleColor: "#ffffff", dotSize: 6, dotLag: 10, sparkleInterval: 50, sparkleLifeSpan: 60}));
   }
-
-  window.followingDotWithSparkles = followingDotWithSparkles;
-
-  function tryInit() {
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    const mainContent = document.getElementById('mainContent');
-    
-    if (welcomeScreen && !welcomeScreen.classList.contains('hidden')) {
-      return;
-    }
-    
-    if (mainContent && !mainContent.classList.contains('hidden')) {
-      window.cursorEffect = followingDotWithSparkles({
-        dotColor: '#ffffff',
-        sparkleColor: '#ffffff',
-        dotSize: 6,
-        dotLag: 10,
-        sparkleInterval: 50,
-        sparkleLifeSpan: 60
-      });
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const welcomeScreen = document.getElementById('welcomeScreen');
-    if (welcomeScreen) {
-      welcomeScreen.addEventListener('click', () => {
-        setTimeout(tryInit, 600);
-      });
-    }
-  });
-
-  document.addEventListener('keydown', () => {
-    setTimeout(tryInit, 600);
-  }, { once: true });
-
-  setTimeout(tryInit, 1000);
-
+  document.addEventListener("DOMContentLoaded", (() => {
+    const e = document.getElementById("welcomeScreen");
+    e && e.addEventListener("click", (() => {setTimeout(t, 600)}));
+  })), document.addEventListener("keydown", (() => {setTimeout(t, 600)}), {once: !0}), setTimeout(t, 1e3);
 })();
