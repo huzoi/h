@@ -8,7 +8,7 @@ var cursoreffects = function(t) {
     
     function v() {
       if (y.matches) return console.log("This browser has prefers reduced motion turned on, so the cursor did not init"), !1;
-      e = document.createElement("canvas"), n = e.getContext("2d"), e.style.top = "0px", e.style.left = "0px", e.style.pointerEvents = "none", o ? (e.style.position = "absolute", s.appendChild(e), e.width = s.clientWidth, e.height = s.clientHeight) : (e.style.position = "fixed", document.body.appendChild(e), e.width = h, e.height = c), document.body.style.cursor = "none", s.addEventListener("mousemove", E), window.addEventListener("resize", w), x();
+      e = document.createElement("canvas"), n = e.getContext("2d"), e.style.top = "0px", e.style.left = "0px", e.style.pointerEvents = "none", e.style.zIndex = "10000", o ? (e.style.position = "absolute", s.appendChild(e), e.width = s.clientWidth, e.height = s.clientHeight) : (e.style.position = "fixed", document.body.appendChild(e), e.width = h, e.height = c), document.body.style.cursor = "none", document.querySelectorAll("*").forEach(el => el.style.cursor = "none"), s.addEventListener("mousemove", E), window.addEventListener("resize", w), x();
     }
     
     function w(t) {
@@ -56,7 +56,7 @@ var cursoreffects = function(t) {
 (function() {
   function t() {
     const t = document.getElementById("welcomeScreen"), e = document.getElementById("mainContent");
-    t && !t.classList.contains("hidden") || e && !e.classList.contains("hidden") && (window.cursorEffect = cursoreffects.followingDotWithSparkles({dotColor: "#ffffff", sparkleColor: "#ffffff", dotSize: 4, dotLag: 10, sparkleInterval: 50, sparkleLifeSpan: 60}));
+    t && !t.classList.contains("hidden") || e && !e.classList.contains("hidden") && (window.cursorEffect = cursoreffects.followingDotWithSparkles({dotColor: "#ffffff", sparkleColor: "#ffffff", dotSize: 6, dotLag: 10, sparkleInterval: 50, sparkleLifeSpan: 60}));
   }
   document.addEventListener("DOMContentLoaded", (() => {
     const e = document.getElementById("welcomeScreen");
