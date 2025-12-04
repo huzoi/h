@@ -56,7 +56,7 @@ var cursoreffects = function(t) {
 (function() {
   function t() {
     const t = document.getElementById("welcomeScreen"), e = document.getElementById("mainContent");
-    t && !t.classList.contains("hidden") || e && !e.classList.contains("hidden") && (window.cursorEffect = cursoreffects.followingDotWithSparkles({dotColor: "#ffffff", sparkleColor: "#ffffff", dotSize: 6, dotLag: 10, sparkleInterval: 50, sparkleLifeSpan: 60}));
+    t && !t.classList.contains("hidden") || e && !e.classList.contains("hidden") && (window.cursorEffect = cursoreffects.followingDotWithSparkles({dotColor: "#ffffff", sparkleColor: "#ffffff", dotSize: 4, dotLag: 10, sparkleInterval: 50, sparkleLifeSpan: 60}));
   }
   document.addEventListener("DOMContentLoaded", (() => {
     const e = document.getElementById("welcomeScreen");
