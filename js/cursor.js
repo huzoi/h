@@ -2,7 +2,7 @@ var cursoreffects = function(t) {
   "use strict";
   return t.followingDotWithSparkles = function(t) {
     let e, n, i, o = t && t.element, s = o || document.body, h = window.innerWidth, c = window.innerHeight, l = {x: h / 2, y: h / 2}, a = {x: h / 2, y: h / 2}, r = [];
-    const d = t?.dotColor || "#ffffff", u = t?.sparkleColor || "#ffffff", A = t?.dotSize || 2, m = t?.dotLag || 10, g = t?.sparkleInterval || 25, f = t?.sparkleLifeSpan || 75;
+    const d = t?.dotColor || "#ffffff", u = t?.sparkleColor || "#ffffff", A = t?.dotSize || 3.5, m = t?.dotLag || 10, g = t?.sparkleInterval || 20, f = t?.sparkleLifeSpan || 48;
     let p = 0;
     const y = window.matchMedia("(prefers-reduced-motion: reduce)");
     
@@ -56,7 +56,7 @@ var cursoreffects = function(t) {
 (function() {
   function t() {
     const t = document.getElementById("welcomeScreen"), e = document.getElementById("mainContent");
-    t && !t.classList.contains("hidden") || e && !e.classList.contains("hidden") && (window.cursorEffect = cursoreffects.followingDotWithSparkles({dotColor: "#ffffff", sparkleColor: "#ffffff", dotSize: 2, dotLag: 10, sparkleInterval: 25, sparkleLifeSpan: 75}));
+    t && !t.classList.contains("hidden") || e && !e.classList.contains("hidden") && (window.cursorEffect = cursoreffects.followingDotWithSparkles({dotColor: "#ffffff", sparkleColor: "#ffffff", dotSize: 3.5, dotLag: 10, sparkleInterval: 20, sparkleLifeSpan: 48}));
   }
   document.addEventListener("DOMContentLoaded", (() => {
     const e = document.getElementById("welcomeScreen");
