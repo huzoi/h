@@ -1,5 +1,5 @@
 const bioText = document.getElementById('bioText');
-const bioArray = window.BIO_ARRAY || ['#bakstageskkuad', 'shotout to my goytoy: https://loopy.rest ', 'Spain | 18'];
+const bioArray = window.BIO_ARRAY || ['#bakstageskkuad', 'my personal rapeslave: https://loopy.rest ', 'Spain | 18'];
 
 let charIndex = 0;
 let bioIndex = 0;
