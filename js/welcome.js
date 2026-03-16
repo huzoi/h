@@ -26,11 +26,8 @@ window.dismissWelcome = function(event) {
     bgVideo.play().catch(err => console.log('Video autoplay prevented:', err));
   }
   if (audio) {
-    audio.muted = true;
     audio.currentTime = 0;
-    audio.play().then(() => {
-      audio.muted = false;
-    }).catch(err => console.log('Audio autoplay prevented:', err));
+    audio.play().catch(err => console.log('Audio autoplay prevented:', err));
   }
   initTile();
   if (typeof window.initDiscordCard === 'function') {
