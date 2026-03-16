@@ -15,28 +15,21 @@ window.copyToClipboard = function(text) {
 
 window.dismissWelcome = function(event) {
   if (event) event.preventDefault();
-
   const welcomeScreen = document.getElementById('welcomeScreen');
   const mainContent = document.getElementById('mainContent');
   const audio = document.getElementById('audioatp');
   const bgVideo = document.getElementById('bgVideo');
-
   if (welcomeScreen) welcomeScreen.classList.add('hidden');
-
   if (mainContent) mainContent.classList.remove('hidden');
-
   if (bgVideo) {
     bgVideo.currentTime = 0;
     bgVideo.play().catch(err => console.log('Video autoplay prevented:', err));
   }
-
   if (audio) {
     audio.currentTime = 0;
     audio.play().catch(err => console.log('Audio autoplay prevented:', err));
   }
-
   initTile();
-
   if (typeof window.initDiscordCard === 'function') {
     window.initDiscordCard();
   }
@@ -44,12 +37,9 @@ window.dismissWelcome = function(event) {
 
 document.addEventListener('DOMContentLoaded', function() {
   const welcomeScreen = document.getElementById('welcomeScreen');
-
   if (welcomeScreen) {
     welcomeScreen.addEventListener('click', function(e) {
-      if (e.target === welcomeScreen) {
-        window.dismissWelcome(e);
-      }
+      window.dismissWelcome(e);
     });
   }
 });
