@@ -26,8 +26,18 @@ window.dismissWelcome = function(event) {
     bgVideo.play().catch(err => console.log('Video autoplay prevented:', err));
   }
   if (audio) {
-    audio.currentTime = 0;
-    audio.play().catch(err => console.log('Audio autoplay prevented:', err));
+    const unlock = new Audio();
+    unlock.play().then(() => {
+      audio.muted = false;
+      audio.volume = 1;
+      audio.currentTime = 0;
+      audio.play().catch(err => console.log('Audio autoplay prevented:', err));
+    }).catch(() => {
+      audio.muted = false;
+      audio.volume = 1;
+      audio.currentTime = 0;
+      audio.play().catch(err => console.log('Audio autoplay prevented:', err));
+    });
   }
   initTile();
   if (typeof window.initDiscordCard === 'function') {
