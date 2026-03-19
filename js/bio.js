@@ -1,5 +1,5 @@
 const bioText = document.getElementById('bioText');
-const bioArray = window.BIO_ARRAY || ['Spain | 19', 'Backend', '@archlinux | GitLab Contributor', '@katanalinux [Kodachi Fork](WIP/ETA 2028)'];
+const bioArray = window.BIO_ARRAY || ['Spain | 19', 'Backend', '@ArchLinux | GitLab Contributor', '@ShinobiLinux | Project Lead (ETA: 2029)'];
 
 let charIndex = 0;
 let bioIndex = 0;
